@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>Lesson Title: Key Points</title>
+<title>Shiny Webapps with R for Geospatial Exploration: Key Points</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="../assets/styles.css">
 <script src="../assets/scripts.js" type="text/javascript"></script><!-- mathjax --><script type="text/x-mathjax-config">
@@ -33,12 +33,12 @@
   <div class="container-fluid top-nav-container">
     <div class="col-md-6">
       <div class="large-logo">
-        <img alt="Carpentries Incubator" src="../assets/images/incubator-logo.svg"><abbr class="badge badge-light" title="This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught." style="background-color: #FF4955; border-radius: 5px">
-          <a href="https://cdh.carpentries.org/the-lesson-life-cycle.html#early-development-pre-alpha-through-alpha" class="external-link alert-link" style="color: #000">
-            <i aria-hidden="true" class="icon" data-feather="alert-octagon" style="border-radius: 5px"></i>
-            Pre-Alpha
+        <img alt="Carpentries Incubator" src="../assets/images/incubator-logo.svg"><abbr class="badge badge-light" title="This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback." style="background-color: #FFC700; border-radius: 5px">
+          <a href="https://cdh.carpentries.org/the-lesson-life-cycle.html#field-testing-alpha-stage" class="external-link alert-link" style="color: #383838">
+            <i aria-hidden="true" class="icon" data-feather="alert-triangle" style="border-radius: 5px"></i>
+            Alpha
           </a>
-          <span class="visually-hidden">This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.</span>
+          <span class="visually-hidden">This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback.</span>
         </abbr>
         
       </div>
@@ -65,7 +65,7 @@
       <img class="small-logo" alt="Carpentries Incubator" src="../assets/images/incubator-logo-sm.svg">
 </div>
     <div class="lesson-title-md">
-      Lesson Title
+      Shiny Webapps with R for Geospatial Exploration
     </div>
     <div class="search-icon-sm">
       <!-- TODO: do not show until we have search
@@ -76,7 +76,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 <li class="nav-item">
           <span class="lesson-title">
-            Lesson Title
+            Shiny Webapps with R for Geospatial Exploration
           </span>
         </li>
         <li class="nav-item">
@@ -109,7 +109,7 @@
   </div>
 <!--/div.container-fluid -->
 </nav><div class="col-md-12 mobile-title">
-  Lesson Title
+  Shiny Webapps with R for Geospatial Exploration
 </div>
 
 <aside class="col-md-12 lesson-progress"><div style="width: %" class="percentage">
@@ -182,7 +182,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="introduction.html">1. Using RMarkdown</a>
+        <a href="01-intro-to-shiny.html">1. Introduction to Shiny</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -246,17 +246,22 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         
         
-<section id="introduction"><h2 class="section-heading"><a href="introduction.html">Using RMarkdown</a></h2>
+<section id="01-intro-to-shiny"><h2 class="section-heading"><a href="01-intro-to-shiny.html">Introduction to Shiny</a></h2>
 <hr class="half-width">
 <ul>
-<li>Use <code>.md</code> files for episodes when you want static
-content</li>
-<li>Use <code>.Rmd</code> files for episodes when you need to generate
-output</li>
-<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
-with your lesson</li>
-<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
-locally</li>
+<li>Create a file called <code>app.R</code> to make a shiny app.</li>
+<li>Make sure this file starts with the four key parts of a Shiny app
+<ul>
+<li>The preamble.<br>
+</li>
+<li>The creation of a UI.<br>
+</li>
+<li>The creation of a server function with <code>input</code> and
+<code>output</code> as arguments.<br>
+</li>
+<li>A call to run <code>shinyApp()</code> at the end.</li>
+</ul>
+</li>
 </ul></section>
 </div>
     </main>
@@ -270,12 +275,12 @@ locally</li>
         <p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
         <p>
         
-        <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/README.md" class="external-link">Edit on GitHub</a>
+        <a href="https://github.com/cobalt-casco/r-shiny-geospatial/edit/main/README.md" class="external-link">Edit on GitHub</a>
         
 	
-        | <a href="https://github.com/carpentries/workbench-template-rmd/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
-        | <a href="https://github.com/carpentries/workbench-template-rmd/" class="external-link">Source</a></p>
-				<p><a href="https://github.com/carpentries/workbench-template-rmd/blob/main/CITATION" class="external-link">Cite</a> | <a href="mailto:team@carpentries.org">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
+        | <a href="https://github.com/cobalt-casco/r-shiny-geospatial/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
+        | <a href="https://github.com/cobalt-casco/r-shiny-geospatial/" class="external-link">Source</a></p>
+				<p><a href="https://github.com/cobalt-casco/r-shiny-geospatial/blob/main/CITATION" class="external-link">Cite</a> | <a href="mailto:jarrett.byrnes@umb.edu">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 			</div>
 			<div class="col-md-6">
         
@@ -295,18 +300,18 @@ locally</li>
     {
   "@context": "https://schema.org",
   "@type": "TrainingMaterial",
-  "@id": "https://carpentries.github.io/workbench-template-rmd/instructor/key-points.html",
+  "@id": "https://cobalt-casco.github.io/r-shiny-geospatial/instructor/key-points.html",
   "inLanguage": "en",
   "dct:conformsTo": "https://bioschemas.org/profiles/TrainingMaterial/1.0-RELEASE",
   "description": "A Carpentries Lesson teaching foundational data and coding skills to researchers worldwide",
-  "keywords": "software, data, lesson, The Carpentries",
+  "keywords": "software, data, lesson, R, shiny, geospatial",
   "name": "Key Points",
   "creativeWorkStatus": "active",
-  "url": "https://carpentries.github.io/workbench-template-rmd/instructor/key-points.html",
-  "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/key-points.html",
+  "url": "https://cobalt-casco.github.io/r-shiny-geospatial/instructor/key-points.html",
+  "identifier": "https://cobalt-casco.github.io/r-shiny-geospatial/instructor/key-points.html",
   "dateCreated": "2024-01-07",
-  "dateModified": "2024-01-07",
-  "datePublished": "2024-01-07"
+  "dateModified": "2024-01-08",
+  "datePublished": "2024-01-08"
 }
 
   </script><script>
