@@ -60,6 +60,7 @@ contact: 'jarrett.byrnes@umb.edu' # FIXME
 # Order of episodes in your lesson
 episodes:
 - 01-intro-to-shiny.Rmd
+- 02-shiny-ui.Rmd
 
 # Information for Learners
 learners:
