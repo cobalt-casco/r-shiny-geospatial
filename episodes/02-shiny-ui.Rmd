@@ -9,7 +9,7 @@ source("setup.R")
 knitr::opts_chunk$set(fig.height = 8, 
                       warning = FALSE, 
                       message = FALSE)
-library(webshot)
+library(webshot2)
 ```
 
 :::::::::::::::::::::::::::::::::::::: questions 

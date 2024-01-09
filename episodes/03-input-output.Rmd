@@ -6,7 +6,7 @@ exercises: 35
 
 ```{r setup, echo=FALSE}
 source("setup.R")
-library(webshot)
+library(webshot2)
 knitr::opts_chunk$set(fig.height = 6, 
                       warning = FALSE, 
                       message = FALSE)

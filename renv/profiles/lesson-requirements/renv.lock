@@ -17,6 +17,13 @@
     ]
   },
   "Packages": {
+    "AsioHeaders": {
+      "Package": "AsioHeaders",
+      "Version": "1.22.1-2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "85bf3bd8fa58da21a22d84fd4f4ef0a8"
+    },
     "DBI": {
       "Package": "DBI",
       "Version": "1.2.0",
@@ -157,6 +164,25 @@
       ],
       "Hash": "9b2191ede20fa29828139b9900922e51"
     },
+    "chromote": {
+      "Package": "chromote",
+      "Version": "0.1.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R6",
+        "curl",
+        "fastmap",
+        "jsonlite",
+        "later",
+        "magrittr",
+        "processx",
+        "promises",
+        "rlang",
+        "websocket"
+      ],
+      "Hash": "14c8f71bf7b112634b154f8a6a0867e1"
+    },
     "class": {
       "Package": "class",
       "Version": "7.3-22",
@@ -218,6 +244,16 @@
       "Repository": "CRAN",
       "Hash": "d691c61bff84bd63c383874d2d0c3307"
     },
+    "cpp11": {
+      "Package": "cpp11",
+      "Version": "0.4.7",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "5a295d7d963cc5035284dcdbaf334f4e"
+    },
     "crayon": {
       "Package": "crayon",
       "Version": "1.5.2",
@@ -229,6 +265,16 @@
         "utils"
       ],
       "Hash": "e8a1e41acf02548751f45c718d55aa6a"
+    },
+    "curl": {
+      "Package": "curl",
+      "Version": "5.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "ce88d13c0b10fe88a37d9c59dba2d7f9"
     },
     "digest": {
       "Package": "digest",
@@ -705,6 +751,21 @@
       ],
       "Hash": "709d852d33178db54b17c722e5b1e594"
     },
+    "purrr": {
+      "Package": "purrr",
+      "Version": "1.0.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "cli",
+        "lifecycle",
+        "magrittr",
+        "rlang",
+        "vctrs"
+      ],
+      "Hash": "1cba04a4e9414bdefc9dcaa99649a8dc"
+    },
     "rappdirs": {
       "Package": "rappdirs",
       "Version": "0.3.3",
@@ -819,6 +880,26 @@
       ],
       "Hash": "f432b3379fb1a47046e253468b6b6b6d"
     },
+    "shi18ny": {
+      "Package": "shi18ny",
+      "Version": "1.1.1",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "shi18ny",
+      "RemoteUsername": "datasketch",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "37f276f1081f1f0a4c99f42f4f8038dbe999ba9a",
+      "Requirements": [
+        "R",
+        "dplyr",
+        "purrr",
+        "shiny",
+        "shinyjs",
+        "yaml"
+      ],
+      "Hash": "95507de4a96142105a1f99d284a0f54b"
+    },
     "shiny": {
       "Package": "shiny",
       "Version": "1.8.0",
@@ -852,6 +933,19 @@
         "xtable"
       ],
       "Hash": "3a1f41807d648a908e3c7f0334bf85e6"
+    },
+    "shinyjs": {
+      "Package": "shinyjs",
+      "Version": "2.1.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "digest",
+        "jsonlite",
+        "shiny"
+      ],
+      "Hash": "802e4786b353a4bb27116957558548d5"
     },
     "shinythemes": {
       "Package": "shinythemes",
@@ -994,18 +1088,33 @@
       ],
       "Hash": "c826c7c4241b6fc89ff55aaea3fa7491"
     },
-    "webshot": {
-      "Package": "webshot",
-      "Version": "0.5.5",
+    "webshot2": {
+      "Package": "webshot2",
+      "Version": "0.1.1",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "R",
         "callr",
-        "jsonlite",
-        "magrittr"
+        "chromote",
+        "later",
+        "magrittr",
+        "promises"
       ],
-      "Hash": "16858ee1aba97f902d24049d4a44ef16"
+      "Hash": "701b4be1af8d359271f82cb240853693"
+    },
+    "websocket": {
+      "Package": "websocket",
+      "Version": "1.4.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "AsioHeaders",
+        "R6",
+        "cpp11",
+        "later"
+      ],
+      "Hash": "76e0d400757e318cca33def29ccebbc2"
     },
     "withr": {
       "Package": "withr",
