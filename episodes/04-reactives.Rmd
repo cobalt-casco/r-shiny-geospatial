@@ -1,0 +1,341 @@
+---
+title: "Reactive Objects in Shiny"
+teaching: 40
+exercises: 0
+---
+
+```{r setup, echo=FALSE}
+source("setup.R")
+library(webshot)
+knitr::opts_chunk$set(fig.height = 6, 
+                      warning = FALSE, 
+                      message = FALSE)
+```
+
+:::::::::::::::::::::::::::::::::::::: questions 
+
+- What is reactivity?
+- How can I avoid re-processing data the same way for multiple outputs?
+- How can I have inputs change in response to other inputs?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: objectives
+
+- Explain what a reactive context means.
+- Minimize code in our app with reactives.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Our App So Far
+
+We have come far! Here is our app so far. It looks great, but, in reading it, 
+notice that we re-use a whole block of code to filter data. Wouldn't it be
+nice to instead only filter that data once, and not duplicate the effort?
+
+```{r io-app, eval = FALSE}
+# 1. Preamble
+library(shiny)
+library(shinythemes)
+library(sf)
+library(dplyr)
+library(ggplot2)
+
+seagrass_casco <- readRDS("data/joined_seagrass_cover.Rds")
+
+# 2. Define a User Interface
+ui <- fluidPage(
+  title = "Seagrass in Casco App",
+  theme = shinytheme("sandstone"),
+  
+ titlePanel("Seagrass in Casco Bay over time"),
+ 
+ sidebarLayout(
+   
+   # sidebar
+   sidebarPanel(
+     selectInput(
+       inputId = "year",
+       label = "Choose a year:",
+       choices = unique(seagrass_casco$year) |> sort(),
+       selected = unique(seagrass_casco$year) |> min() #to get the earliest year
+       ),
+     
+     checkboxGroupInput(
+       inputId = "cover",
+       label = "Percent Cover Classes:",
+       choices = unique(seagrass_casco$cover_pct) |> sort(),
+       selected =  unique(seagrass_casco$cover_pct) |> sort()
+     ), 
+   ),
+   
+   # main
+   mainPanel(
+     plotOutput("map"),
+     plotOutput("hist"),
+   )
+ )
+)
+
+# 3. define a server
+server <- function(input, output) {
+  
+  # our map block
+  output$map <- renderPlot({
+    
+    dat <- seagrass_casco |>
+      filter(year %in% input$year) |>
+      filter(cover_pct %in% input$cover)
+    
+    ggplot() +
+      geom_sf(data = dat,
+              linewidth = 1.5, 
+              color = "darkgreen")
+    
+  })
+
+  # our histogram block
+  output$hist <- renderPlot({
+
+    dat <- seagrass_casco |>
+      filter(year %in% input$year) |>
+      filter(cover_pct %in% input$cover)
+    
+    ggplot(data = dat,
+           aes(x = hectares)) +
+      geom_histogram(bins = 50)
+  })
+
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+```{r load_app_so_far, echo = FALSE, message = FALSE, warning = FALSE, results = "hide"}
+
+# 1. Preamble
+library(shiny)
+library(shinythemes)
+library(sf)
+library(dplyr)
+library(ggplot2)
+
+seagrass_casco <- readRDS("data/joined_seagrass_cover.Rds")
+
+# 2. Define a User Interface
+ui <- fluidPage(
+  title = "Seagrass in Casco App",
+  theme = shinytheme("sandstone"),
+  
+ titlePanel("Seagrass in Casco Bay over time"),
+ 
+ sidebarLayout(
+   
+   # sidebar
+   sidebarPanel(
+     selectInput(
+       inputId = "year",
+       label = "Choose a year:",
+       choices = unique(seagrass_casco$year) |> sort(),
+       selected = unique(seagrass_casco$year) |> min() #to get the earliest year
+       ),
+     
+     checkboxGroupInput(
+       inputId = "cover",
+       label = "Percent Cover Classes:",
+       choices = unique(seagrass_casco$cover_pct) |> sort(),
+       selected =  unique(seagrass_casco$cover_pct) |> sort()
+     ), 
+   ),
+   
+   # main
+   mainPanel(
+     plotOutput("map"),
+     plotOutput("hist"),
+   )
+ )
+)
+
+# 3. define a server
+server <- function(input, output) {
+  
+  # our map block
+  output$map <- renderPlot({
+    
+    dat <- seagrass_casco |>
+      filter(year %in% input$year) |>
+      filter(cover_pct %in% input$cover)
+    
+    ggplot() +
+      geom_sf(data = dat,
+              linewidth = 1.5, 
+              color = "darkgreen")
+    
+  })
+
+  # our histogram block
+  output$hist <- renderPlot({
+
+    dat <- seagrass_casco |>
+      filter(year %in% input$year) |>
+      filter(cover_pct %in% input$cover)
+    
+    ggplot(data = dat,
+           aes(x = hectares)) +
+      geom_histogram(bins = 50)
+  })
+
+}
+```
+
+## Reactives
+
+At its core, Shiny is all about **reactivity** Reactivity is when you change
+the value of x, everything else that relies on x is re-evaluated. In our app,
+`output$map` depends on `input$year`. If you change `input$year`, `output$map` 
+changes. This is reactivity in action, and `input` is a *reactive variable*.
+
+This is not how things behave normally in R. For example
+
+```{r}
+x <- 5
+y <- x+10
+x <- 10
+y
+```
+
+Note that y is not 20. It is still 15.
+
+## Reactive Objects
+
+In Shiny, we can make reactive objects that change in response to inputs inside
+of our server. For example, in the current app, if our server started like this
+
+```{r, eval = FALSE}
+server <- function(input, output) {
+  
+ dat <- seagrass_casco |>
+      filter(year %in% input$year) |>
+      filter(cover_pct %in% input$cover)
+    
+...
+```
+
+And later on, in one of our render functions, we tried to use `dat`, Shiny
+would throw an error. That's because `dat` as declared above is a *static variable*.
+It does not change with context. Instead, we need to declare it a reactive using
+`reactive()`, which works just like `render*()`. We feed it a code block, and it
+generates a reactive object.
+
+```{r reactive, eval = FALSE}
+server <- function(input, output) {
+  
+ dat <- reactive({
+   seagrass_casco |>
+      filter(year %in% input$year) |>
+      filter(cover_pct %in% input$cover)
+ }) 
+...
+```
+
+We now have a reactive object. To use it, thought, we cannot call `dat` as before.
+Instead, we use it like a function with no arguments `dat()`. 
+
+```{r reactive_server, eval = FALSE}
+server <- function(input, output) {
+  
+ # reactives  
+ dat <- reactive({
+   seagrass_casco |>
+      filter(year %in% input$year) |>
+      filter(cover_pct %in% input$cover)
+ }) 
+   # our map block
+  output$map <- renderPlot({
+
+    ggplot() +
+      geom_sf(data = dat(),
+              linewidth = 1.5, 
+              color = "darkgreen")
+    
+  })
+
+  # our histogram block
+  output$hist <- renderPlot({
+
+    ggplot(data = dat(),
+           aes(x = hectares)) +
+      geom_histogram(bins = 50)
+  })
+}
+```
+
+
+## Reactive UIs
+
+Now that we can reactively filter our datasets, we can address a second problem.
+Some years do not contain some `cover_pct` classes. That means that it's possible
+for us to select a value that doesn't exist. In our current app, this isn't
+a complete killer, but, in many other apps, dynamically generating inputs that
+match a range of values in data can greatly simplify our UI.
+
+This let's us introduce a new `render*()` function, `renderUI()`. This function
+allows us to create a UI element based on inputs and reactives. We will need to make three changes to our app code.
+
+First, in our server, we need to modify our reactives. As this new UI element 
+will depend on a data frame just filtered to year, we need to split our one 
+reactive into two.
+
+```{r reactive_split, eval = FALSE}
+server <- function(input, output) {
+  
+ #reactives  
+ dat_year <- reactive({
+   seagrass_casco |>
+      filter(year %in% input$year) 
+ }) 
+
+  dat <- reactive({
+   dat_year |>
+      filter(cover_pct %in% input$cover)
+ }) 
+...
+```
+
+Now filtering happens in two steps. The second reactive uses the first.
+We can still use `dat()` as before in our other output elements.
+
+Second, we need to add a section to our server to create a UI object with 
+`renderUI()`. What's nice is that we can take the old code, paste it in here,
+and change `seagrass_casco` to `dat_year()`.
+
+```{r, eval = FALSE}
+output$cover_checks <- renderUI({
+  checkboxGroupInput(
+    inputId = "cover",
+    label = "Percent Cover Classes:",
+    choices = unique(dat_year()$cover_pct) |> sort(),
+    selected =  unique(dat_year()$cover_pct) |> sort()
+  )
+  
+})
+```
+
+Last, we replace the `checkboxGroupInput()` in our `sidebarPanel()` with
+
+```{r, eval = FALSE}
+uiOutput("cover_checks")
+```
+
+
+
+::::::::::::::::::::::::::::::::::::: keypoints 
+
+- Create a file called `app.R` to make a shiny app.
+- Make sure this file starts with the four key parts of a Shiny app
+     - The preamble.  
+     - The creation of a UI.  
+     - The creation of a server function with `input` and `output` as arguments.  
+     - A call to run `shinyApp()` at the end.
+     
+::::::::::::::::::::::::::::::::::::::::::::::::
