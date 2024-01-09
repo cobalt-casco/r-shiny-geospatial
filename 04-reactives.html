@@ -384,6 +384,13 @@ duplicate the effort?</p>
 <span></span>
 <span><span class="fu">shinyApp</span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code></pre>
 </div>
+<div class="codewrapper">
+<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="error" tabindex="0"><code>Error: package or namespace load failed for 'sf' in dyn.load(file, DLLpath = DLLpath, ...):
+ unable to load shared object '/home/runner/.local/share/renv/cache/v5/R-4.3/x86_64-pc-linux-gnu/units/0.8-5/119d19da480e873f72241ff6962ffd83/units/libs/units.so':
+  libudunits2.so.0: cannot open shared object file: No such file or directory</code></pre>
+</div>
 </section><section id="reactives"><h2 class="section-heading">Reactives<a class="anchor" aria-label="anchor" href="#reactives"></a>
 </h2>
 <hr class="half-width"><p>At its core, Shiny is all about <strong>reactivity</strong>
@@ -393,7 +400,7 @@ on <code>input$year</code>. If you change <code>input$year</code>,
 <code>output$map</code> changes. This is reactivity in action, and
 <code>input</code> is a <em>reactive variable</em>.</p>
 <p>This is not how things behave normally in R. For example</p>
-<div class="codewrapper sourceCode" id="cb2">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -413,16 +420,16 @@ on <code>input$year</code>. If you change <code>input$year</code>,
 <hr class="half-width"><p>In Shiny, we can make reactive objects that change in response to
 inputs inside of our server. For example, in the current app, if our
 server started like this</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a> dat <span class="ot">&lt;-</span> seagrass_casco <span class="sc">|&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(year <span class="sc">%in%</span> input<span class="sc">$</span>year) <span class="sc">|&gt;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(cover_pct <span class="sc">%in%</span> input<span class="sc">$</span>cover)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>...</span></code></pre>
+<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a> dat <span class="ot">&lt;-</span> seagrass_casco <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(year <span class="sc">%in%</span> input<span class="sc">$</span>year) <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(cover_pct <span class="sc">%in%</span> input<span class="sc">$</span>cover)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>...</span></code></pre>
 </div>
 <p>And later on, in one of our render functions, we tried to use
 <code>dat</code>, Shiny would throw an error. That’s because
@@ -431,22 +438,22 @@ does not change with context. Instead, we need to declare it a reactive
 using <code>reactive()</code>, which works just like
 <code>render*()</code>. We feed it a code block, and it generates a
 reactive object.</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a> dat <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>   seagrass_casco <span class="sc">|&gt;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(year <span class="sc">%in%</span> input<span class="sc">$</span>year) <span class="sc">|&gt;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(cover_pct <span class="sc">%in%</span> input<span class="sc">$</span>cover)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a> }) </span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>...</span></code></pre>
+<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a> dat <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>   seagrass_casco <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(year <span class="sc">%in%</span> input<span class="sc">$</span>year) <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(cover_pct <span class="sc">%in%</span> input<span class="sc">$</span>cover)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a> }) </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>...</span></code></pre>
 </div>
 <p>We now have a reactive object. To use it, thought, we cannot call
 <code>dat</code> as before. Instead, we use it like a function with no
 arguments <code>dat()</code>.</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -492,22 +499,22 @@ app code.</p>
 <p>First, in our server, we need to modify our reactives. As this new UI
 element will depend on a data frame just filtered to year, we need to
 split our one reactive into two.</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a> <span class="co">#reactives  </span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a> dat_year <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>   seagrass_casco <span class="sc">|&gt;</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(year <span class="sc">%in%</span> input<span class="sc">$</span>year) </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a> }) </span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  dat <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>   dat_year <span class="sc">|&gt;</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(cover_pct <span class="sc">%in%</span> input<span class="sc">$</span>cover)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a> }) </span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>...</span></code></pre>
+<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a> <span class="co">#reactives  </span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a> dat_year <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>   seagrass_casco <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(year <span class="sc">%in%</span> input<span class="sc">$</span>year) </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a> }) </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  dat <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>   dat_year <span class="sc">|&gt;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(cover_pct <span class="sc">%in%</span> input<span class="sc">$</span>cover)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a> }) </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>...</span></code></pre>
 </div>
 <p>Now filtering happens in two steps. The second reactive uses the
 first. We can still use <code>dat()</code> as before in our other output
@@ -516,7 +523,7 @@ elements.</p>
 with <code>renderUI()</code>. What’s nice is that we can take the old
 code, paste it in here, and change <code>seagrass_casco</code> to
 <code>dat_year()</code>.</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -532,7 +539,7 @@ code, paste it in here, and change <code>seagrass_casco</code> to
 </div>
 <p>Last, we replace the <code>checkboxGroupInput()</code> in our
 <code>sidebarPanel()</code> with</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">

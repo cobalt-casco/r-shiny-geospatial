@@ -272,11 +272,6 @@
 
         
 
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>phantomjs has been installed to /home/runner/bin</code></pre>
-</div>
 <div class="overview card">
 <h2 class="card-header">Overview</h2>
 <div class="row g-0">
@@ -385,7 +380,7 @@ play with, but, can be confusing to then re-edit later.</p>
 <hr class="half-width"><p>A shiny app consists of four distinct parts. Here they all are, laid
 out. This app will actually run, although it will produce a blank app.
 Here’s the whole piece laid out. We will look at each one in turn.</p>
-<div class="codewrapper sourceCode" id="cb2">
+<div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -407,14 +402,14 @@ color palettes, or other things that you do not need dynamically created
 or recreated later. You can even write this in another R script - say,
 <code>create_objects.R</code> and then run them in the preamble like
 so:</p>
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">source</span><span class="op">(</span><span class="st">"create_objects.R"</span><span class="op">)</span></span></code></pre>
 </div>
 <p>Second, <strong>the User Interface</strong>.</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -426,7 +421,7 @@ are using the <code>fluidPage()</code> function. What does that do? The
 helpfile tells us this is a function that creates a fluid page layout,
 and we can add a title, theme, and more. What does that mean? Let’s find
 out.</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -440,7 +435,7 @@ function. Shiny user interfaces are built by a series of nested
 functions, each one generating more and more HTML code, nested by order
 of how the functions are written.</p>
 <p>Third we have <strong>the server</strong>:</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -459,7 +454,7 @@ server are inputs to the arguments <code>ui</code> and
 <code>server</code>. This means that, if you wanted, you could have
 named them something else, but, the community seems to have coalesced
 around using these object names.</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">

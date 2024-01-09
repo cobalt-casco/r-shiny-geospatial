@@ -275,11 +275,6 @@
 
         
 
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>phantomjs has been installed to /home/runner/bin</code></pre>
-</div>
 <div class="overview card">
 <h2 class="card-header">Overview</h2>
 <div class="row g-0">
@@ -306,7 +301,7 @@
 <section id="adding-data-to-our-app-thus-far"><h2 class="section-heading">Adding Data to Our App Thus Far<a class="anchor" aria-label="anchor" href="#adding-data-to-our-app-thus-far"></a>
 </h2>
 <hr class="half-width"><p>So far, we have created an app with a basic layout</p>
-<div class="codewrapper sourceCode" id="cb2">
+<div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -368,20 +363,32 @@ are the potential percent cover classes?</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>
-</li></ol><div class="codewrapper sourceCode" id="cb3">
+</li></ol><div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">library</span><span class="op">(</span><span class="va">sf</span><span class="op">)</span></span>
-<span><span class="kw">library</span><span class="op">(</span><span class="va">dplyr</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw">library</span><span class="op">(</span><span class="va">sf</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="error" tabindex="0"><code>Error: package or namespace load failed for 'sf' in dyn.load(file, DLLpath = DLLpath, ...):
+ unable to load shared object '/home/runner/.local/share/renv/cache/v5/R-4.3/x86_64-pc-linux-gnu/units/0.8-5/119d19da480e873f72241ff6962ffd83/units/libs/units.so':
+  libudunits2.so.0: cannot open shared object file: No such file or directory</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">library</span><span class="op">(</span><span class="va">dplyr</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">seagrass_casco</span> <span class="op">&lt;-</span> <span class="fu">readRDS</span><span class="op">(</span><span class="st">"data/joined_seagrass_cover.Rds"</span><span class="op">)</span></span></code></pre>
 </div>
 <ol start="2" style="list-style-type: decimal"><li>
-</li></ol><div class="codewrapper sourceCode" id="cb4">
+</li></ol><div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -398,14 +405,327 @@ are the potential percent cover classes?</p></li>
  $ cover    : int  1 3 3 3 3 3 1 1 3 4 ...
  $ cover_pct: chr  "0% to 10%" "40% to 70%" "40% to 70%" "40% to 70%" ...
  $ year97   : int  NA NA NA NA NA NA NA NA NA NA ...
- $ geometry :sfc_POLYGON of length 4946; first list element: List of 1
-  ..$ : num [1:55, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
-  ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+ $ geometry :List of 4946
+  ..$ :List of 1
+  .. ..$ : num [1:55, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:39, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:145, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:68, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:18, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:38, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:37, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:60, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:21, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:103, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:48, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:32, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:64, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:78, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:47, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:29, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:54, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:22, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:36, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:258, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:29, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:11, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:22, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:11, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:28, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:431, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:116, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:203, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:47, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:358, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:58, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:186, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 3
+  .. ..$ : num [1:159, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..$ : num [1:23, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..$ : num [1:40, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 3
+  .. ..$ : num [1:184, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..$ : num [1:16, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..$ : num [1:11, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:35, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:141, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:38, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:68, 1:2] -70 -70 -70 -70 -70 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:34, 1:2] -70 -70 -70 -70 -70 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:51, 1:2] -70 -70 -70 -70 -70 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:29, 1:2] -70 -70 -70 -70 -70 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:29, 1:2] -70 -70 -70 -70 -70 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:28, 1:2] -70 -70 -70 -70 -70 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:57, 1:2] -70 -70 -70 -70 -70 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:28, 1:2] -70 -70 -70 -70 -70 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:36, 1:2] -70 -70 -70 -70 -70 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:40, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:39, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:36, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 2
+  .. ..$ : num [1:82, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..$ : num [1:46, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:26, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:19, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:36, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:56, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:24, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:91, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:65, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:24, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:16, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:71, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:76, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:67, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:97, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:40, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:142, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:29, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:35, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:41, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:54, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:15, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:44, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:71, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:40, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:10, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:31, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:26, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:38, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:67, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:73, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:263, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:21, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:299, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:50, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:37, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:31, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 3
+  .. ..$ : num [1:167, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..$ : num [1:12, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..$ : num [1:39, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:30, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:299, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:59, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:161, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:147, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 2
+  .. ..$ : num [1:35, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..$ : num [1:22, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:46, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:67, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:49, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:35, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:85, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:27, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:121, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  .. [list output truncated]
+  ..- attr(*, "class")= chr [1:2] "sfc_POLYGON" "sfc"
+  ..- attr(*, "precision")= num 0
+  ..- attr(*, "crs")=List of 2
+  .. ..$ input: chr "WGS 84"
+  .. ..$ wkt  : chr "GEOGCRS[\"WGS 84\",\n    DATUM[\"World Geodetic System 1984\",\n        ELLIPSOID[\"WGS 84\",6378137,298.257223"| __truncated__
+  .. ..- attr(*, "class")= chr "crs"
+  ..- attr(*, "bbox")= 'bbox' Named num [1:4] -70.2 43.6 -69.8 43.9
+  .. ..- attr(*, "names")= chr [1:4] "xmin" "ymin" "xmax" "ymax"
+  ..- attr(*, "n_empty")= int 0
  - attr(*, "sf_column")= chr "geometry"
  - attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA NA NA NA NA
   ..- attr(*, "names")= chr [1:6] "year" "acres" "hectares" "cover" ...</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -417,7 +737,7 @@ are the potential percent cover classes?</p></li>
 </h3>
 <pre class="output" tabindex="0"><code>[1] 2022 2018 2013 2010 1997</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -429,7 +749,7 @@ are the potential percent cover classes?</p></li>
 </h3>
 <pre class="output" tabindex="0"><code>[1] "0% to 10%"   "40% to 70%"  "70% to 100%" "10% to 40%"  "0%"         </code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -439,21 +759,11 @@ are the potential percent cover classes?</p></li>
 <span>  <span class="fu">count</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>Simple feature collection with 5 features and 2 fields
-Geometry type: MULTIPOLYGON
-Dimension:     XY
-Bounding box:  xmin: -70.24772 ymin: 43.57211 xmax: -69.84399 ymax: 43.93288
-Geodetic CRS:  WGS 84
-# A tibble: 5 × 3
-   year     n                                                           geometry
-* &lt;dbl&gt; &lt;int&gt;                                                 &lt;MULTIPOLYGON [°]&gt;
-1  1997  1564 (((-69.93372 43.84055, -69.93379 43.84049, -69.93385 43.84038, -6…
-2  2010   748 (((-69.87759 43.82806, -69.87764 43.82817, -69.87778 43.82825, -6…
-3  2013  1056 (((-70.14101 43.71671, -70.14104 43.71673, -70.14108 43.71673, -7…
-4  2018   956 (((-69.87295 43.77136, -69.87298 43.77131, -69.87296 43.77128, -6…
-5  2022   622 (((-69.96359 43.79531, -69.96356 43.79534, -69.96355 43.79537, -6…</code></pre>
+<pre class="error" tabindex="0"><code>Error in `as_tibble()`:
+! All columns in a tibble must be vectors.
+✖ Column `geometry` is a `sfc_POLYGON/sfc` object.</code></pre>
 </div>
 <p>What’s interesting about the last one, is that you can see that
 summarizing actions in <code>dplyr</code> MERGE THE GEOMETRY within a
@@ -509,7 +819,7 @@ following arguments:</p>
 moment, we will set it to the first year in our data.</li>
 </ul><p>Let’s insert the following in our <code>sidebarPanel()</code>,
 replacing the text that was there, and see what it produces.</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -543,9 +853,9 @@ order, and default to them all starting checked off</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -592,7 +902,7 @@ and more. For the moment, let’s add two <code>plotOutput()</code>
 windows to our app. One for a map - called “map” and one for a
 histogram, called “hist”. This will go in our <code>mainPanel()</code>
 as follows:</p>
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -609,7 +919,7 @@ areas will currently appear blank.</p>
 </h2>
 <hr class="half-width"><p>It is now time to dig into our server. Recall the code for the server
 looks like this:</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -651,7 +961,7 @@ wants one lump of code to work on. Formally, this argument is named
 functions, <code>render*()</code> functions have other arguments that
 can be supplied to fine-tune how they are executed.</p>
 <p>Let’s modify our server to have sections for our outputs.</p>
-<div class="codewrapper sourceCode" id="cb16">
+<div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -679,7 +989,7 @@ cover percent selector. For both of these, we will reference our
 <code>input</code> list - <code>input$year</code> and
 <code>input$cover</code>. Let’s add that filter operation to both code
 blocks.</p>
-<div class="codewrapper sourceCode" id="cb17">
+<div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -713,7 +1023,7 @@ to minimize copying and pasting code.</p>
 first, we will make a map based on <code>geom_sf()</code> with a good
 polygon width and a viridis color scale. For the second, we will look at
 the hectares of each bed.</p>
-<div class="codewrapper sourceCode" id="cb18">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -751,10 +1061,17 @@ the hectares of each bed.</p>
 <p>Before you try and run this, remember to add
 <code><a href="https://ggplot2.tidyverse.org" class="external-link">library(ggplot2)</a></code> to your preamble.</p>
 <div class="codewrapper">
+<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="error" tabindex="0"><code>Error: package or namespace load failed for 'sf' in dyn.load(file, DLLpath = DLLpath, ...):
+ unable to load shared object '/home/runner/.local/share/renv/cache/v5/R-4.3/x86_64-pc-linux-gnu/units/0.8-5/119d19da480e873f72241ff6962ffd83/units/libs/units.so':
+  libudunits2.so.0: cannot open shared object file: No such file or directory</code></pre>
+</div>
+<div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code>
-Listening on http://127.0.0.1:8785</code></pre>
+Listening on http://127.0.0.1:8274</code></pre>
 </div>
 <div id="callout2" class="callout callout">
 <div class="callout-square">
