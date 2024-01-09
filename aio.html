@@ -202,6 +202,18 @@
 </div>
 <!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush4">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading4">
+        <a href="03-input-output.html">3. Inputs and Outputs</a>
+    </div>
+<!--/div.accordion-header-->
+        
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
                 </div>
               </div>
             </div>
@@ -778,6 +790,577 @@ Shiny</a></em></p>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre>
+</div>
+</div>
+</div>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul>
+<li>We can add text and HTML to our Shiny apps using functions.</li>
+<li>Shiny has a built-in theming system to make professional looking
+apps.</li>
+<li>Our fluid pages are composed of multiple functions that control
+overall layout.</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- 
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use. 
+ -->
+</section></section><section id="aio-03-input-output"><p>Content from <a href="03-input-output.html">Inputs and Outputs</a></p>
+<hr>
+<p>Last updated on 2024-01-09 |
+        
+        <a href="https://github.com/cobalt-casco/r-shiny-geospatial/edit/main/episodes/03-input-output.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How do we let users query the data?</li>
+<li>How do we change the data to let the app respond to the user?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Show how to add inputs and spaces for outputs to an app UI.</li>
+<li>Demonstrate server logic to create custom reactive outputs.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="adding-data-to-our-app-thus-far"><h2 class="section-heading">Adding Data to Our App Thus Far<a class="anchor" aria-label="anchor" href="#adding-data-to-our-app-thus-far"></a>
+</h2>
+<hr class="half-width">
+<p>So far, we have created an app with a basic layout</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># 1. Preamble</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">shiny</span><span class="op">)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">shinythemes</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 2. Define a User Interface</span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
+<span>  title <span class="op">=</span> <span class="st">"Seagrass in Casco App"</span>,</span>
+<span>  theme <span class="op">=</span> <span class="fu">shinytheme</span><span class="op">(</span><span class="st">"sandstone"</span><span class="op">)</span>,</span>
+<span>  </span>
+<span> <span class="fu">titlePanel</span><span class="op">(</span><span class="st">"Seagrass in Casco Bay over time"</span><span class="op">)</span>,</span>
+<span> </span>
+<span> <span class="fu">sidebarLayout</span><span class="op">(</span></span>
+<span>   <span class="fu">sidebarPanel</span><span class="op">(</span><span class="st">"This is the sidebar"</span><span class="op">)</span>,</span>
+<span>   <span class="fu">mainPanel</span><span class="op">(</span><span class="st">"This is the main panel"</span><span class="op">)</span></span>
+<span> <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 3. define a server</span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># 4. Call shinyApp() to run your app</span></span>
+<span><span class="fu">shinyApp</span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code></pre>
+</div>
+<p>We don’t create apps to be static and bare, however. We want this app
+to explore data from <a href="https://www.maine.gov/dmr/science/species-information/eelgrass" class="external-link">Maine
+DEP surveys of Seagrass Beds</a> through time. To make this easier, here
+we provide a saved <code>sf</code> object that is merged seagrass data
+through time. Note, this is not a raw shapefile, but rather the result
+of some post-processing of the data layers provided by the <a href="https://www.maine.gov/geolib/catalog.html" class="external-link">Maine
+GeoLibrary</a>.</p>
+<p><a href="https://cobalt-casco.github.io/r-shiny-geospatial/data/joined_seagrass_cover.Rds" class="external-link">You
+can download the data here</a>. Note how small <code>.Rds</code> files
+are. This was generated with <code>saveRds()</code> which can save out
+any R object.</p>
+<div id="challenge1" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge1"></a>
+</h3>
+<div class="callout-content">
+<ol style="list-style-type: decimal">
+<li><p>To the preamble of your all, load the <code>sf</code> package,
+the <code>dplyr</code> package, and load the data using
+<code>readRDS()</code>. It works just like
+<code>my_dat &lt;- read.csv("data/my_data.csv)</code>. Let’s call this
+data <code>seagrass_casco</code>.</p></li>
+<li><p>Explore the data a bit. What are the columns? What is the
+projection? What years are here? How many beds are there per year? What
+are the potential percent cover classes?</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<ol style="list-style-type: decimal"><li>
+</li></ol>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">library</span><span class="op">(</span><span class="va">sf</span><span class="op">)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">dplyr</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">seagrass_casco</span> <span class="op">&lt;-</span> <span class="fu">readRDS</span><span class="op">(</span><span class="st">"data/joined_seagrass_cover.Rds"</span><span class="op">)</span></span></code></pre>
+</div>
+<ol start="2" style="list-style-type: decimal"><li>
+</li></ol>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#what is here</span></span>
+<span><span class="fu">str</span><span class="op">(</span><span class="va">seagrass_casco</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Classes 'sf' and 'data.frame':	4946 obs. of  7 variables:
+ $ year     : num  2022 2022 2022 2022 2022 ...
+ $ acres    : num  0.0446 0.0608 2.5622 0.7182 0.0182 ...
+ $ hectares : num  0.01803 0.02459 1.03688 0.29063 0.00735 ...
+ $ cover    : int  1 3 3 3 3 3 1 1 3 4 ...
+ $ cover_pct: chr  "0% to 10%" "40% to 70%" "40% to 70%" "40% to 70%" ...
+ $ year97   : int  NA NA NA NA NA NA NA NA NA NA ...
+ $ geometry :sfc_POLYGON of length 4946; first list element: List of 1
+  ..$ : num [1:55, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+ - attr(*, "sf_column")= chr "geometry"
+ - attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA NA NA NA NA
+  ..- attr(*, "names")= chr [1:6] "year" "acres" "hectares" "cover" ...</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># the years</span></span>
+<span><span class="fu">unique</span><span class="op">(</span><span class="va">seagrass_casco</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>[1] 2022 2018 2013 2010 1997</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># the classes</span></span>
+<span><span class="fu">unique</span><span class="op">(</span><span class="va">seagrass_casco</span><span class="op">$</span><span class="va">cover_pct</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>[1] "0% to 10%"   "40% to 70%"  "70% to 100%" "10% to 40%"  "0%"         </code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#beds per year</span></span>
+<span><span class="va">seagrass_casco</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">count</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Simple feature collection with 5 features and 2 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -70.24772 ymin: 43.57211 xmax: -69.84399 ymax: 43.93288
+Geodetic CRS:  WGS 84
+# A tibble: 5 × 3
+   year     n                                                           geometry
+* &lt;dbl&gt; &lt;int&gt;                                                 &lt;MULTIPOLYGON [°]&gt;
+1  1997  1564 (((-69.93372 43.84055, -69.93379 43.84049, -69.93385 43.84038, -6…
+2  2010   748 (((-69.87759 43.82806, -69.87764 43.82817, -69.87778 43.82825, -6…
+3  2013  1056 (((-70.14101 43.71671, -70.14104 43.71673, -70.14108 43.71673, -7…
+4  2018   956 (((-69.87295 43.77136, -69.87298 43.77131, -69.87296 43.77128, -6…
+5  2022   622 (((-69.96359 43.79531, -69.96356 43.79534, -69.96355 43.79537, -6…</code></pre>
+</div>
+<p>What’s interesting about the last one, is that you can see that
+summarizing actions in <code>dplyr</code> MERGE THE GEOMETRY within a
+group. This can be useful at at times to have fewer rows to deal with
+for the same geometry, or for other spatial operations.</p>
+</div>
+</div>
+</div>
+</div>
+</section><section id="adding-inputs-to-the-ui"><h2 class="section-heading">Adding Inputs to the UI<a class="anchor" aria-label="anchor" href="#adding-inputs-to-the-ui"></a>
+</h2>
+<hr class="half-width">
+<p>Now that we have data, we need to give our user the tools to explore
+it. Shiny provides a wide variety of functions to create
+<strong>Inputs</strong>. These functions all follow a similar naming
+convention and structure. The function name will use camelCase with the
+first part describing the input, and the second being the word “Input” -
+such as <code>selectInput()</code>, <code>sliderInput()</code>, and
+more.</p>
+<p>The function then takes an <code>inputID</code> argument - a string
+which will be used to refer to the input later on in the server. Then a
+<code>label</code> argument, for what the user will see as the text
+describing the input. Finally, a wide variety of input specific
+arguments. For example, see the following from <a href="https://docs.google.com/presentation/d/1dXhqqsD7dPOOdcC5Y7RW--dEU7UfU52qlb0YD3kKeLw/edit#slide=id.gd53c66aaf_0_157" class="external-link">Dean
+Attali’s tutorial</a>.</p>
+<p><img src="fig/input.png" alt="inputs" class="figure"> For the purposes of our app,
+let’s begin by adding a <code>selectInput()</code> to allow a user to
+choose a year.</p>
+<div id="callout1" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
+</h3>
+<div class="callout-content">
+<p>It would have been nice to have a slider for year. But, base Shiny
+doesn’t have a function for that. You’d need
+<code>sliderTextInput()</code> from <a href="https://dreamrs.github.io/shinyWidgets/" class="external-link">shinyWidgets</a>.</p>
+</div>
+</div>
+</div>
+<p>Looking at <code>?selectInput</code> we see we will need the
+following arguments:</p>
+<ul>
+<li>
+<code>inputId</code> - a name for our input</li>
+<li>
+<code>label</code> - what the user sees</li>
+<li>
+<code>choices</code> - some choices for years. This can just be the
+<code>unique()</code> years from our data.</li>
+<li>
+<code>selected = NULL</code> - an default first year. For the
+moment, we will set it to the first year in our data.</li>
+</ul>
+<p>Let’s insert the following in our <code>sidebarPanel()</code>,
+replacing the text that was there, and see what it produces.</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">selectInput</span><span class="op">(</span></span>
+<span>  inputID <span class="op">=</span> <span class="st">"year"</span>,</span>
+<span>  label <span class="op">=</span> <span class="st">"Choose a year:"</span>,</span>
+<span>  choices <span class="op">=</span> <span class="fu">unique</span><span class="op">(</span><span class="va">seagrass_casco</span><span class="op">$</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">sort</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  selected <span class="op">=</span> <span class="fu">unique</span><span class="op">(</span><span class="va">seagrass_casco</span><span class="op">$</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">min</span><span class="op">(</span><span class="op">)</span> <span class="co">#to get the earliest year</span></span>
+<span><span class="op">)</span></span></code></pre>
+</div>
+<p>You will note that we are using the data to populate this form. This
+is good practice so that you don’t enter a value into your select that
+isn’t found in the data, which can cause havoc. We also used
+<code>sort()</code> so that our selector was in order.</p>
+<div id="challenge-more-inputs" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-more-inputs" class="callout-inner">
+<h3 class="callout-title">Challenge: More inputs!<a class="anchor" aria-label="anchor" href="#challenge-more-inputs"></a>
+</h3>
+<div class="callout-content">
+<p>Add a <code>checkboxGroupInput()</code> with
+<code>inputId = "cover"</code>. Have it show all cover classes, in
+order, and default to them all starting checked off</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">checkboxGroupInput</span><span class="op">(</span></span>
+<span>  inputId <span class="op">=</span> <span class="st">"cover"</span>,</span>
+<span>  label <span class="op">=</span> <span class="st">"Percent Cover Classes:"</span>,</span>
+<span>  choices <span class="op">=</span> <span class="fu">unique</span><span class="op">(</span><span class="va">seagrass_casco</span><span class="op">$</span><span class="va">cover_pct</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">sort</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  selected <span class="op">=</span>  <span class="fu">unique</span><span class="op">(</span><span class="va">seagrass_casco</span><span class="op">$</span><span class="va">cover_pct</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">sort</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>This is just the start of <code>*Input()</code> possibilities. Shiny
+itself hosts a number of inputs, and there are multiple packages that
+host other possible inputs.</p>
+<figure><img src="fig/shiny-inputs.png" alt="" class="figure mx-auto d-block"><figcaption>shiny inputs</figcaption></figure></section><section id="adding-placeholders-for-outputs"><h2 class="section-heading">Adding Placeholders for Outputs<a class="anchor" aria-label="anchor" href="#adding-placeholders-for-outputs"></a>
+</h2>
+<hr class="half-width">
+<p>Before we get to the business of creating outputs, we need to have
+Shiny tell us where in the UI the outputs will be placed. To do this,
+much like the <code>*Input()</code> functions, we have a series of
+<code>*Output()</code> functions that will generate HTML placeholders
+for where different outputs should go.</p>
+<table class="table">
+<thead><tr class="header">
+<th>Function</th>
+<th>Output Type</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>plotOutput()</td>
+<td>plot, ggplot</td>
+</tr>
+<tr class="even">
+<td>tableOutput()</td>
+<td>table or data frame</td>
+</tr>
+<tr class="odd">
+<td>uiOutput()</td>
+<td>Shiny UI element</td>
+</tr>
+<tr class="even">
+<td>textOutput()</td>
+<td>text</td>
+</tr>
+<tr class="odd">
+<td>htmlOutput()</td>
+<td>HTML code</td>
+</tr>
+<tr class="even">
+<td>leaflet::leafletOutput()</td>
+<td>leaflet map</td>
+</tr>
+</tbody>
+</table>
+<p>Like inputs, these functions have a first argument - in this case
+<code>outputId</code> which is a character string, and will be used
+elsewhere in the app. Other arguemtns to these functions vary by output,
+but can be used to do things like specify output window size, scaling,
+and more. For the moment, let’s add two <code>plotOutput()</code>
+windows to our app. One for a map - called “map” and one for a
+histogram, called “hist”. This will go in our <code>mainPanel()</code>
+as follows:</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span>   <span class="fu">mainPanel</span><span class="op">(</span></span>
+<span>     <span class="fu">plotOutput</span><span class="op">(</span><span class="st">"map"</span><span class="op">)</span>,</span>
+<span>     <span class="fu">plotOutput</span><span class="op">(</span><span class="st">"hist"</span><span class="op">)</span>,</span>
+<span>   <span class="op">)</span></span></code></pre>
+</div>
+<p>Note, if we had wanted to make these side by side, we could have used
+<code>column()</code> or even gone hard on HTML with tables.</p>
+<p>Render your app to make sure it works, but you will see that these
+areas will currently appear blank.</p>
+</section><section id="servers-and-the-output"><h2 class="section-heading">Servers and the Output<a class="anchor" aria-label="anchor" href="#servers-and-the-output"></a>
+</h2>
+<hr class="half-width">
+<p>It is now time to dig into our server. Recall the code for the server
+looks like this:</p>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># 3. define a server</span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span></span></code></pre>
+</div>
+<p>It’s just an empty creation of a function. What happens inside the
+function is what interests us. Note that the function takes two
+arguments - <code>input</code> and <code>output</code>. These are the
+names of lists that are part of the Shiny environment.</p>
+<p>The list <code>input</code> stores all of the inputs from the
+<code>*Input()</code> functions in the UI. The list <code>output</code>
+will contain all of the outputs generated by functions in the server to
+then plug into the UI above. All of the IDs we have in our
+<code>ui</code> will be used as parts of these lists. So,
+<code>input$year</code> will contain the value of year chosen.
+<code>output$map</code> will contain the plot of a map to be displayed
+in the UI.</p>
+<p>So how do we generate output? Throughout our server we need to
+continually add pieces to the <code>output</code> list that match what
+is in the UI. These pieces should be generated by a series of
+<code>render*()</code> functions. We have functions like
+<code>renderPlot()</code>, <code>renderTable()</code>, etc. Note how
+they are in many ways the inverse of the <code>*Output()</code>
+functions above. <code>render</code> comes first - which is useful as it
+reminds you that you are working in the server. But then the type of
+output being generated has a direct match with a <code>*Output()</code>
+function above. It makes it easy to search back and forth and to find
+matching functions and elements.</p>
+<p><img src="fig/render.png" alt="an example render function" class="figure"><em>an
+example render function from Dean Attali</em></p>
+<p>Note in the above function the argument to <code>renderPlot()</code>
+is enclosed in <code>{}</code>. What? Curly braces? Why? Who? Don’t
+worry. Think of them like fences to enclose a block of code. That block
+of code is then passed to <code>renderPlot()</code> as a single
+argument. The function knows how to handle and parse it. But, it only
+wants one lump of code to work on. Formally, this argument is named
+<code>expr</code>, but, that rarely gets used. As with all other
+functions, <code>render*()</code> functions have other arguments that
+can be supplied to fine-tune how they are executed.</p>
+<p>Let’s modify our server to have sections for our outputs.</p>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># 3. define a server</span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  </span>
+<span>  <span class="co"># our map block</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">map</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="op">{</span></span>
+<span>    </span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="co"># our histogram block</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">hist</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="op">{</span></span>
+<span>    </span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span>    </span>
+<span><span class="op">}</span></span></code></pre>
+</div>
+<p>Now, in each block, we will need to filter our seagrass data down
+based on input selection. This is going to require two
+<code>dplyr::filter()</code> operations. The first to subset to year.
+The second to subset to only those cover percent classes that are in the
+cover percent selector. For both of these, we will reference our
+<code>input</code> list - <code>input$year</code> and
+<code>input$cover</code>. Let’s add that filter operation to both code
+blocks.</p>
+<div class="codewrapper sourceCode" id="cb16">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># 3. define a server</span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  </span>
+<span>  <span class="co"># our map block</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">map</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="op">{</span></span>
+<span>    </span>
+<span>    <span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">seagrass_casco</span> <span class="op">|&gt;</span></span>
+<span>      <span class="fu">filter</span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">input</span><span class="op">$</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>      <span class="fu">filter</span><span class="op">(</span><span class="va">cover_pct</span> <span class="op">%in%</span> <span class="va">input</span><span class="op">$</span><span class="va">cover</span><span class="op">)</span></span>
+<span>    </span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="co"># our histogram block</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">hist</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="op">{</span></span>
+<span></span>
+<span>    <span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">seagrass_casco</span> <span class="op">|&gt;</span></span>
+<span>      <span class="fu">filter</span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">input</span><span class="op">$</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>      <span class="fu">filter</span><span class="op">(</span><span class="va">cover_pct</span> <span class="op">%in%</span> <span class="va">input</span><span class="op">$</span><span class="va">cover</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span>    </span>
+<span><span class="op">}</span></span></code></pre>
+</div>
+<p>Note, because these are two separate code blocks, we can reuse the
+object name <code>dat</code>. In our next lesson, we will talk about how
+to minimize copying and pasting code.</p>
+<p>Finally, for each block, let’s add a <code>ggplot()</code>. In the
+first, we will make a map based on <code>geom_sf()</code> with a good
+polygon width and a viridis color scale. For the second, we will look at
+the hectares of each bed.</p>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># 3. define a server</span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  </span>
+<span>  <span class="co"># our map block</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">map</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="op">{</span></span>
+<span>    </span>
+<span>    <span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">seagrass_casco</span> <span class="op">|&gt;</span></span>
+<span>      <span class="fu">filter</span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">input</span><span class="op">$</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>      <span class="fu">filter</span><span class="op">(</span><span class="va">cover_pct</span> <span class="op">%in%</span> <span class="va">input</span><span class="op">$</span><span class="va">cover</span><span class="op">)</span></span>
+<span>    </span>
+<span>    <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>      <span class="fu">geom_sf</span><span class="op">(</span>data <span class="op">=</span> <span class="va">dat</span>,</span>
+<span>              linewidth <span class="op">=</span> <span class="fl">1.5</span>, </span>
+<span>              color <span class="op">=</span> <span class="st">"darkgreen"</span><span class="op">)</span></span>
+<span>    </span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="co"># our histogram block</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">hist</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="op">{</span></span>
+<span></span>
+<span>    <span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">seagrass_casco</span> <span class="op">|&gt;</span></span>
+<span>      <span class="fu">filter</span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">input</span><span class="op">$</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>      <span class="fu">filter</span><span class="op">(</span><span class="va">cover_pct</span> <span class="op">%in%</span> <span class="va">input</span><span class="op">$</span><span class="va">cover</span><span class="op">)</span></span>
+<span>    </span>
+<span>    <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">dat</span>,</span>
+<span>           <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">hectares</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>      <span class="fu">geom_histogram</span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span><span class="op">}</span></span></code></pre>
+</div>
+<p>Before you try and run this, remember to add
+<code><a href="https://ggplot2.tidyverse.org" class="external-link">library(ggplot2)</a></code> to your preamble.</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>
+Listening on http://127.0.0.1:5015</code></pre>
+</div>
+<div id="callout2" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
+</h3>
+<div class="callout-content">
+<p>Sometimes <code>==</code> in filters makes Shiny behave strangely
+with other libraries. You can use <code>%in%</code> instead and get the
+same effect.</p>
+</div>
+</div>
+</div>
+<figure><img src="shiny_figs/io_app.jpeg" alt="" class="figure mx-auto d-block"><figcaption>the app so far</figcaption></figure><div id="discussion1" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Discussion<a class="anchor" aria-label="anchor" href="#discussion1"></a>
+</h3>
+<div class="callout-content">
+<p>And there you have it! A basic app! In groups of 3-4, play with the
+app and discuss</p>
+<ol style="list-style-type: decimal">
+<li><p>What do you learn from playing with this app?</p></li>
+<li><p>What would you change? How would you modify this to make it
+better. Can you implement any of that? Or ask the instructors/google for
+potential solutions.</p></li>
+</ol>
 </div>
 </div>
 </div>
