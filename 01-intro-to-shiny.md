@@ -38,6 +38,9 @@ of subsets of data and re-visualizations. At their most complex... well, chekc
 out some of the submissions to the annual [R Shiny Competition](https://posit.co/blog/winners-of-the-3rd-annual-shiny-contest/).
 
 ![Shiny in a Nutshell from Dean Attali](fig/shiny_in_a_nutshell_attali.png)
+*Shiny in a Nutshell from Dean Attali*
+
+
 In a nutshell, we write Shiny apps in R code. Those apps are then hosted on a 
 server that is running an instance of a [Shiny Server](https://posit.co/products/open-source/shinyserver/). Note, we will use
 a public Shiny server for this lesson, [shinyapps.io](https://shinyapps.io/).
