@@ -75,7 +75,8 @@ of RStudio to [shinyapps.io](https://shinyapps.io) and then the app will upload.
 Run your app. If it has a problem, log into [shinyapps.io](https://shinyapps.io)
 and inspect the logfile for your app to see what went wrong.
 
-![log view in shinyapps.io](fig/shinyapps_log.png)
+![Log view in shinyapps.io](fig/shinyapps_log.png)
+
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
