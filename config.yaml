@@ -61,6 +61,7 @@ contact: 'jarrett.byrnes@umb.edu' # FIXME
 episodes:
 - 01-intro-to-shiny.Rmd
 - 02-shiny-ui.Rmd
+- 03-input-output.Rmd
 
 # Information for Learners
 learners:
