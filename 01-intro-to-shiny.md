@@ -5,9 +5,6 @@ exercises: 15
 ---
 
 
-```{.output}
-phantomjs has been installed to /home/runner/bin
-```
 
 :::::::::::::::::::::::::::::::::::::: questions 
 

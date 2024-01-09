@@ -5,9 +5,6 @@ exercises: 35
 ---
 
 
-```{.output}
-phantomjs has been installed to /home/runner/bin
-```
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
@@ -83,6 +80,15 @@ How many beds are there per year? What are the potential percent cover classes?
 
 ```r
 library(sf)
+```
+
+```{.error}
+Error: package or namespace load failed for 'sf' in dyn.load(file, DLLpath = DLLpath, ...):
+ unable to load shared object '/home/runner/.local/share/renv/cache/v5/R-4.3/x86_64-pc-linux-gnu/units/0.8-5/119d19da480e873f72241ff6962ffd83/units/libs/units.so':
+  libudunits2.so.0: cannot open shared object file: No such file or directory
+```
+
+```r
 library(dplyr)
 
 seagrass_casco <- readRDS("data/joined_seagrass_cover.Rds")
@@ -103,9 +109,322 @@ Classes 'sf' and 'data.frame':	4946 obs. of  7 variables:
  $ cover    : int  1 3 3 3 3 3 1 1 3 4 ...
  $ cover_pct: chr  "0% to 10%" "40% to 70%" "40% to 70%" "40% to 70%" ...
  $ year97   : int  NA NA NA NA NA NA NA NA NA NA ...
- $ geometry :sfc_POLYGON of length 4946; first list element: List of 1
-  ..$ : num [1:55, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
-  ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+ $ geometry :List of 4946
+  ..$ :List of 1
+  .. ..$ : num [1:55, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:39, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:145, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:68, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:18, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:38, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:37, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:60, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:21, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:103, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:48, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:32, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:64, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:78, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:47, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:29, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:54, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:22, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:36, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:258, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:29, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:11, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:22, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:11, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:28, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:431, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:116, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:203, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:47, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:358, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:58, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:186, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 3
+  .. ..$ : num [1:159, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..$ : num [1:23, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..$ : num [1:40, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 3
+  .. ..$ : num [1:184, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..$ : num [1:16, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..$ : num [1:11, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:35, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:141, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:38, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:68, 1:2] -70 -70 -70 -70 -70 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:34, 1:2] -70 -70 -70 -70 -70 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:51, 1:2] -70 -70 -70 -70 -70 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:29, 1:2] -70 -70 -70 -70 -70 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:29, 1:2] -70 -70 -70 -70 -70 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:28, 1:2] -70 -70 -70 -70 -70 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:57, 1:2] -70 -70 -70 -70 -70 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:28, 1:2] -70 -70 -70 -70 -70 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:36, 1:2] -70 -70 -70 -70 -70 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:40, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:39, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:36, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 2
+  .. ..$ : num [1:82, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..$ : num [1:46, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:26, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:19, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:36, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:56, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:24, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:91, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:65, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:24, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:16, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:71, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:76, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:67, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:97, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:40, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:142, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:29, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:35, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:41, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:54, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:15, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:44, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:71, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:40, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:10, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:31, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:26, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:38, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:67, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:73, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:263, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:21, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:299, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:50, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:37, 1:2] -70.1 -70.1 -70.1 -70.1 -70.1 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:31, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 3
+  .. ..$ : num [1:167, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..$ : num [1:12, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..$ : num [1:39, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:30, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:299, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:59, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:161, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:147, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 2
+  .. ..$ : num [1:35, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..$ : num [1:22, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:46, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:67, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:49, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:35, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:85, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:27, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  ..$ :List of 1
+  .. ..$ : num [1:121, 1:2] -70.2 -70.2 -70.2 -70.2 -70.2 ...
+  .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"
+  .. [list output truncated]
+  ..- attr(*, "class")= chr [1:2] "sfc_POLYGON" "sfc"
+  ..- attr(*, "precision")= num 0
+  ..- attr(*, "crs")=List of 2
+  .. ..$ input: chr "WGS 84"
+  .. ..$ wkt  : chr "GEOGCRS[\"WGS 84\",\n    DATUM[\"World Geodetic System 1984\",\n        ELLIPSOID[\"WGS 84\",6378137,298.257223"| __truncated__
+  .. ..- attr(*, "class")= chr "crs"
+  ..- attr(*, "bbox")= 'bbox' Named num [1:4] -70.2 43.6 -69.8 43.9
+  .. ..- attr(*, "names")= chr [1:4] "xmin" "ymin" "xmax" "ymax"
+  ..- attr(*, "n_empty")= int 0
  - attr(*, "sf_column")= chr "geometry"
  - attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA NA NA NA NA
   ..- attr(*, "names")= chr [1:6] "year" "acres" "hectares" "cover" ...
@@ -136,20 +455,10 @@ seagrass_casco |>
   count()
 ```
 
-```{.output}
-Simple feature collection with 5 features and 2 fields
-Geometry type: MULTIPOLYGON
-Dimension:     XY
-Bounding box:  xmin: -70.24772 ymin: 43.57211 xmax: -69.84399 ymax: 43.93288
-Geodetic CRS:  WGS 84
-# A tibble: 5 × 3
-   year     n                                                           geometry
-* <dbl> <int>                                                 <MULTIPOLYGON [°]>
-1  1997  1564 (((-69.93372 43.84055, -69.93379 43.84049, -69.93385 43.84038, -6…
-2  2010   748 (((-69.87759 43.82806, -69.87764 43.82817, -69.87778 43.82825, -6…
-3  2013  1056 (((-70.14101 43.71671, -70.14104 43.71673, -70.14108 43.71673, -7…
-4  2018   956 (((-69.87295 43.77136, -69.87298 43.77131, -69.87296 43.77128, -6…
-5  2022   622 (((-69.96359 43.79531, -69.96356 43.79534, -69.96355 43.79537, -6…
+```{.error}
+Error in `as_tibble()`:
+! All columns in a tibble must be vectors.
+✖ Column `geometry` is a `sfc_POLYGON/sfc` object.
 ```
 
 What's interesting about the last one, is that you can see that summarizing 
@@ -424,9 +733,15 @@ server <- function(input, output) {
 Before you try and run this, remember to add `library(ggplot2)` to your preamble.
 
 
+```{.error}
+Error: package or namespace load failed for 'sf' in dyn.load(file, DLLpath = DLLpath, ...):
+ unable to load shared object '/home/runner/.local/share/renv/cache/v5/R-4.3/x86_64-pc-linux-gnu/units/0.8-5/119d19da480e873f72241ff6962ffd83/units/libs/units.so':
+  libudunits2.so.0: cannot open shared object file: No such file or directory
+```
+
 ```{.output}
 
-Listening on http://127.0.0.1:8785
+Listening on http://127.0.0.1:8274
 ```
 
 :::::::::::::::::::::::::::::::::: callout
