@@ -227,6 +227,18 @@
 </div>
 <!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush6">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading6">
+        <a href="05-publishing-shiny-app.html">5. Making Shiny Apps Public</a>
+    </div>
+<!--/div.accordion-header-->
+        
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
                 </div>
               </div>
             </div>
@@ -311,35 +323,28 @@ overall layout.</li>
 </ul></section><section id="03-input-output"><h2 class="section-heading"><a href="03-input-output.html">Inputs and Outputs</a></h2>
 <hr class="half-width">
 <ul>
-<li>Create a file called <code>app.R</code> to make a shiny app.</li>
-<li>Make sure this file starts with the four key parts of a Shiny app
-<ul>
-<li>The preamble.<br>
-</li>
-<li>The creation of a UI.<br>
-</li>
-<li>The creation of a server function with <code>input</code> and
-<code>output</code> as arguments.<br>
-</li>
-<li>A call to run <code>shinyApp()</code> at the end.</li>
-</ul>
-</li>
+<li>There are many types of inputs and outputs available for Shiny
+apps.</li>
+<li>Inputs follow a basic structure of having a <code>*Input()</code>
+function with standard arguments in the UI.</li>
+<li>Outputs have a placeholder in the UI using a <code>*Output()</code>
+function.</li>
+<li>Outputs are rendered in the server with a <code>render*()</code>
+function.</li>
+<li>The server has two lists to work with - <code>input</code> and
+<code>output</code> - which contain information for both.</li>
 </ul></section><section id="04-reactives"><h2 class="section-heading"><a href="04-reactives.html">Reactive Objects in Shiny</a></h2>
 <hr class="half-width">
 <ul>
-<li>Create a file called <code>app.R</code> to make a shiny app.</li>
-<li>Make sure this file starts with the four key parts of a Shiny app
+<li>Reactivity is a core to Shiny.</li>
+<li>To avoid duplicating code, use <code>reactive({})</code> objects in
+your server.</li>
+<li>Use reactive objects to generate dynamic UI elements.</li>
+</ul></section><section id="05-publishing-shiny-app"><h2 class="section-heading"><a href="05-publishing-shiny-app.html">Making Shiny Apps Public</a></h2>
+<hr class="half-width">
 <ul>
-<li>The preamble.<br>
-</li>
-<li>The creation of a UI.<br>
-</li>
-<li>The creation of a server function with <code>input</code> and
-<code>output</code> as arguments.<br>
-</li>
-<li>A call to run <code>shinyApp()</code> at the end.</li>
-</ul>
-</li>
+<li>Use shinyapps.io in conjunction with Rstudio to make your app
+public.</li>
 </ul></section>
 </div>
     </main>
