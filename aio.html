@@ -214,6 +214,18 @@
 </div>
 <!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush5">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading5">
+        <a href="04-reactives.html">4. Reactive Objects in Shiny</a>
+    </div>
+<!--/div.accordion-header-->
+        
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
                 </div>
               </div>
             </div>
@@ -918,7 +930,7 @@ are the potential percent cover classes?</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>
 </li></ol>
@@ -1098,7 +1110,7 @@ order, and default to them all starting checked off</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1363,6 +1375,322 @@ potential solutions.</p></li>
 </ol>
 </div>
 </div>
+</div>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul>
+<li>Create a file called <code>app.R</code> to make a shiny app.</li>
+<li>Make sure this file starts with the four key parts of a Shiny app
+<ul>
+<li>The preamble.<br>
+</li>
+<li>The creation of a UI.<br>
+</li>
+<li>The creation of a server function with <code>input</code> and
+<code>output</code> as arguments.<br>
+</li>
+<li>A call to run <code>shinyApp()</code> at the end.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- 
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use. 
+ -->
+</section></section><section id="aio-04-reactives"><p>Content from <a href="04-reactives.html">Reactive Objects in Shiny</a></p>
+<hr>
+<p>Last updated on 2024-01-09 |
+        
+        <a href="https://github.com/cobalt-casco/r-shiny-geospatial/edit/main/episodes/04-reactives.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>phantomjs has been installed to /home/runner/bin</code></pre>
+</div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>What is reactivity?</li>
+<li>How can I avoid re-processing data the same way for multiple
+outputs?</li>
+<li>How can I have inputs change in response to other inputs?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Explain what a reactive context means.</li>
+<li>Minimize code in our app with reactives.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="our-app-so-far"><h2 class="section-heading">Our App So Far<a class="anchor" aria-label="anchor" href="#our-app-so-far"></a>
+</h2>
+<hr class="half-width">
+<p>We have come far! Here is our app so far. It looks great, but, in
+reading it, notice that we re-use a whole block of code to filter data.
+Wouldn’t it be nice to instead only filter that data once, and not
+duplicate the effort?</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># 1. Preamble</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">shiny</span><span class="op">)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">shinythemes</span><span class="op">)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">sf</span><span class="op">)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">dplyr</span><span class="op">)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">ggplot2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">seagrass_casco</span> <span class="op">&lt;-</span> <span class="fu">readRDS</span><span class="op">(</span><span class="st">"data/joined_seagrass_cover.Rds"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 2. Define a User Interface</span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
+<span>  title <span class="op">=</span> <span class="st">"Seagrass in Casco App"</span>,</span>
+<span>  theme <span class="op">=</span> <span class="fu">shinytheme</span><span class="op">(</span><span class="st">"sandstone"</span><span class="op">)</span>,</span>
+<span>  </span>
+<span> <span class="fu">titlePanel</span><span class="op">(</span><span class="st">"Seagrass in Casco Bay over time"</span><span class="op">)</span>,</span>
+<span> </span>
+<span> <span class="fu">sidebarLayout</span><span class="op">(</span></span>
+<span>   </span>
+<span>   <span class="co"># sidebar</span></span>
+<span>   <span class="fu">sidebarPanel</span><span class="op">(</span></span>
+<span>     <span class="fu">selectInput</span><span class="op">(</span></span>
+<span>       inputId <span class="op">=</span> <span class="st">"year"</span>,</span>
+<span>       label <span class="op">=</span> <span class="st">"Choose a year:"</span>,</span>
+<span>       choices <span class="op">=</span> <span class="fu">unique</span><span class="op">(</span><span class="va">seagrass_casco</span><span class="op">$</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">sort</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>       selected <span class="op">=</span> <span class="fu">unique</span><span class="op">(</span><span class="va">seagrass_casco</span><span class="op">$</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">min</span><span class="op">(</span><span class="op">)</span> <span class="co">#to get the earliest year</span></span>
+<span>       <span class="op">)</span>,</span>
+<span>     </span>
+<span>     <span class="fu">checkboxGroupInput</span><span class="op">(</span></span>
+<span>       inputId <span class="op">=</span> <span class="st">"cover"</span>,</span>
+<span>       label <span class="op">=</span> <span class="st">"Percent Cover Classes:"</span>,</span>
+<span>       choices <span class="op">=</span> <span class="fu">unique</span><span class="op">(</span><span class="va">seagrass_casco</span><span class="op">$</span><span class="va">cover_pct</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">sort</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>       selected <span class="op">=</span>  <span class="fu">unique</span><span class="op">(</span><span class="va">seagrass_casco</span><span class="op">$</span><span class="va">cover_pct</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">sort</span><span class="op">(</span><span class="op">)</span></span>
+<span>     <span class="op">)</span>, </span>
+<span>   <span class="op">)</span>,</span>
+<span>   </span>
+<span>   <span class="co"># main</span></span>
+<span>   <span class="fu">mainPanel</span><span class="op">(</span></span>
+<span>     <span class="fu">plotOutput</span><span class="op">(</span><span class="st">"map"</span><span class="op">)</span>,</span>
+<span>     <span class="fu">plotOutput</span><span class="op">(</span><span class="st">"hist"</span><span class="op">)</span>,</span>
+<span>   <span class="op">)</span></span>
+<span> <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 3. define a server</span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  </span>
+<span>  <span class="co"># our map block</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">map</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="op">{</span></span>
+<span>    </span>
+<span>    <span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">seagrass_casco</span> <span class="op">|&gt;</span></span>
+<span>      <span class="fu">filter</span><span class="op">(</span><span class="va">year</span> <span class="op">%in%</span> <span class="va">input</span><span class="op">$</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>      <span class="fu">filter</span><span class="op">(</span><span class="va">cover_pct</span> <span class="op">%in%</span> <span class="va">input</span><span class="op">$</span><span class="va">cover</span><span class="op">)</span></span>
+<span>    </span>
+<span>    <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>      <span class="fu">geom_sf</span><span class="op">(</span>data <span class="op">=</span> <span class="va">dat</span>,</span>
+<span>              linewidth <span class="op">=</span> <span class="fl">1.5</span>, </span>
+<span>              color <span class="op">=</span> <span class="st">"darkgreen"</span><span class="op">)</span></span>
+<span>    </span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="co"># our histogram block</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">hist</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="op">{</span></span>
+<span></span>
+<span>    <span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">seagrass_casco</span> <span class="op">|&gt;</span></span>
+<span>      <span class="fu">filter</span><span class="op">(</span><span class="va">year</span> <span class="op">%in%</span> <span class="va">input</span><span class="op">$</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>      <span class="fu">filter</span><span class="op">(</span><span class="va">cover_pct</span> <span class="op">%in%</span> <span class="va">input</span><span class="op">$</span><span class="va">cover</span><span class="op">)</span></span>
+<span>    </span>
+<span>    <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">dat</span>,</span>
+<span>           <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">hectares</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>      <span class="fu">geom_histogram</span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">shinyApp</span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code></pre>
+</div>
+</section><section id="reactives"><h2 class="section-heading">Reactives<a class="anchor" aria-label="anchor" href="#reactives"></a>
+</h2>
+<hr class="half-width">
+<p>At its core, Shiny is all about <strong>reactivity</strong>
+Reactivity is when you change the value of x, everything else that
+relies on x is re-evaluated. In our app, <code>output$map</code> depends
+on <code>input$year</code>. If you change <code>input$year</code>,
+<code>output$map</code> changes. This is reactivity in action, and
+<code>input</code> is a <em>reactive variable</em>.</p>
+<p>This is not how things behave normally in R. For example</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">+</span><span class="fl">10</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
+<span><span class="va">y</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>[1] 15</code></pre>
+</div>
+<p>Note that y is not 20. It is still 15.</p>
+</section><section id="reactive-objects"><h2 class="section-heading">Reactive Objects<a class="anchor" aria-label="anchor" href="#reactive-objects"></a>
+</h2>
+<hr class="half-width">
+<p>In Shiny, we can make reactive objects that change in response to
+inputs inside of our server. For example, in the current app, if our
+server started like this</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a> dat <span class="ot">&lt;-</span> seagrass_casco <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(year <span class="sc">%in%</span> input<span class="sc">$</span>year) <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(cover_pct <span class="sc">%in%</span> input<span class="sc">$</span>cover)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>...</span></code></pre>
+</div>
+<p>And later on, in one of our render functions, we tried to use
+<code>dat</code>, Shiny would throw an error. That’s because
+<code>dat</code> as declared above is a <em>static variable</em>. It
+does not change with context. Instead, we need to declare it a reactive
+using <code>reactive()</code>, which works just like
+<code>render*()</code>. We feed it a code block, and it generates a
+reactive object.</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a> dat <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>   seagrass_casco <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(year <span class="sc">%in%</span> input<span class="sc">$</span>year) <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(cover_pct <span class="sc">%in%</span> input<span class="sc">$</span>cover)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a> }) </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>...</span></code></pre>
+</div>
+<p>We now have a reactive object. To use it, thought, we cannot call
+<code>dat</code> as before. Instead, we use it like a function with no
+arguments <code>dat()</code>.</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  </span>
+<span> <span class="co"># reactives  </span></span>
+<span> <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">reactive</span><span class="op">(</span><span class="op">{</span></span>
+<span>   <span class="va">seagrass_casco</span> <span class="op">|&gt;</span></span>
+<span>      <span class="fu">filter</span><span class="op">(</span><span class="va">year</span> <span class="op">%in%</span> <span class="va">input</span><span class="op">$</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>      <span class="fu">filter</span><span class="op">(</span><span class="va">cover_pct</span> <span class="op">%in%</span> <span class="va">input</span><span class="op">$</span><span class="va">cover</span><span class="op">)</span></span>
+<span> <span class="op">}</span><span class="op">)</span> </span>
+<span>   <span class="co"># our map block</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">map</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="op">{</span></span>
+<span></span>
+<span>    <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>      <span class="fu">geom_sf</span><span class="op">(</span>data <span class="op">=</span> <span class="fu">dat</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>              linewidth <span class="op">=</span> <span class="fl">1.5</span>, </span>
+<span>              color <span class="op">=</span> <span class="st">"darkgreen"</span><span class="op">)</span></span>
+<span>    </span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="co"># our histogram block</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">hist</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="op">{</span></span>
+<span></span>
+<span>    <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="fu">dat</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>           <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">hectares</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>      <span class="fu">geom_histogram</span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre>
+</div>
+</section><section id="reactive-uis"><h2 class="section-heading">Reactive UIs<a class="anchor" aria-label="anchor" href="#reactive-uis"></a>
+</h2>
+<hr class="half-width">
+<p>Now that we can reactively filter our datasets, we can address a
+second problem. Some years do not contain some <code>cover_pct</code>
+classes. That means that it’s possible for us to select a value that
+doesn’t exist. In our current app, this isn’t a complete killer, but, in
+many other apps, dynamically generating inputs that match a range of
+values in data can greatly simplify our UI.</p>
+<p>This let’s us introduce a new <code>render*()</code> function,
+<code>renderUI()</code>. This function allows us to create a UI element
+based on inputs and reactives. We will need to make three changes to our
+app code.</p>
+<p>First, in our server, we need to modify our reactives. As this new UI
+element will depend on a data frame just filtered to year, we need to
+split our one reactive into two.</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a> <span class="co">#reactives  </span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a> dat_year <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>   seagrass_casco <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(year <span class="sc">%in%</span> input<span class="sc">$</span>year) </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a> }) </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  dat <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>   dat_year <span class="sc">|&gt;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(cover_pct <span class="sc">%in%</span> input<span class="sc">$</span>cover)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a> }) </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>...</span></code></pre>
+</div>
+<p>Now filtering happens in two steps. The second reactive uses the
+first. We can still use <code>dat()</code> as before in our other output
+elements.</p>
+<p>Second, we need to add a section to our server to create a UI object
+with <code>renderUI()</code>. What’s nice is that we can take the old
+code, paste it in here, and change <code>seagrass_casco</code> to
+<code>dat_year()</code>.</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">output</span><span class="op">$</span><span class="va">cover_checks</span> <span class="op">&lt;-</span> <span class="fu">renderUI</span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="fu">checkboxGroupInput</span><span class="op">(</span></span>
+<span>    inputId <span class="op">=</span> <span class="st">"cover"</span>,</span>
+<span>    label <span class="op">=</span> <span class="st">"Percent Cover Classes:"</span>,</span>
+<span>    choices <span class="op">=</span> <span class="fu">unique</span><span class="op">(</span><span class="fu">dat_year</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">cover_pct</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">sort</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    selected <span class="op">=</span>  <span class="fu">unique</span><span class="op">(</span><span class="fu">dat_year</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">cover_pct</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">sort</span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span>  </span>
+<span><span class="op">}</span><span class="op">)</span></span></code></pre>
+</div>
+<p>Last, we replace the <code>checkboxGroupInput()</code> in our
+<code>sidebarPanel()</code> with</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">uiOutput</span><span class="op">(</span><span class="st">"cover_checks"</span><span class="op">)</span></span></code></pre>
 </div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
