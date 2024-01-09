@@ -278,11 +278,8 @@ ui <- fluidPage(
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Create a file called `app.R` to make a shiny app.
-- Make sure this file starts with the four key parts of a Shiny app
-     - The preamble.  
-     - The creation of a UI.  
-     - The creation of a server function with `input` and `output` as arguments.  
-     - A call to run `shinyApp()` at the end.
+- We can add text and HTML to our Shiny apps using functions.
+- Shiny has a built-in theming system to make professional looking apps.
+- Our fluid pages are composed of multiple functions that control overall layout.
      
 ::::::::::::::::::::::::::::::::::::::::::::::::
