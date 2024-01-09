@@ -5,9 +5,6 @@ exercises: 0
 ---
 
 
-```{.output}
-phantomjs has been installed to /home/runner/bin
-```
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
@@ -265,11 +262,8 @@ uiOutput("cover_checks")
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Create a file called `app.R` to make a shiny app.
-- Make sure this file starts with the four key parts of a Shiny app
-     - The preamble.  
-     - The creation of a UI.  
-     - The creation of a server function with `input` and `output` as arguments.  
-     - A call to run `shinyApp()` at the end.
+- Reactivity is a core to Shiny.
+- To avoid duplicating code, use `reactive({})` objects in your server.
+- Use reactive objects to generate dynamic UI elements.
      
 ::::::::::::::::::::::::::::::::::::::::::::::::

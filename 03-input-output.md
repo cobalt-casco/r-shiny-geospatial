@@ -5,6 +5,9 @@ exercises: 35
 ---
 
 
+```{.output}
+phantomjs has been installed to /home/runner/bin
+```
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
@@ -423,7 +426,7 @@ Before you try and run this, remember to add `library(ggplot2)` to your preamble
 
 ```{.output}
 
-Listening on http://127.0.0.1:5015
+Listening on http://127.0.0.1:8785
 ```
 
 :::::::::::::::::::::::::::::::::: callout
@@ -451,11 +454,10 @@ potential solutions.
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Create a file called `app.R` to make a shiny app.
-- Make sure this file starts with the four key parts of a Shiny app
-     - The preamble.  
-     - The creation of a UI.  
-     - The creation of a server function with `input` and `output` as arguments.  
-     - A call to run `shinyApp()` at the end.
+- There are many types of inputs and outputs available for Shiny apps.
+- Inputs follow a basic structure of having a `*Input()` function with standard arguments in the UI.
+- Outputs have a placeholder in the UI using a `*Output()` function.
+- Outputs are rendered in the server with a `render*()` function.
+- The server has two lists to work with - `input` and `output` - which contain information for both.
      
 ::::::::::::::::::::::::::::::::::::::::::::::::

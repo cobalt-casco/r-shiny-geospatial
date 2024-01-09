@@ -63,7 +63,7 @@ episodes:
 - 02-shiny-ui.Rmd
 - 03-input-output.Rmd
 - 04-reactives.Rmd
-#- 05-debugging-shiny.Rmd
+- 05-publishing-shiny-app.Rmd
 
 # Information for Learners
 learners:
