@@ -191,6 +191,18 @@
 </div>
 <!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush3">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading3">
+        <a href="02-shiny-ui.html">2. The Basics of a User Interface</a>
+    </div>
+<!--/div.accordion-header-->
+        
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
                 </div>
               </div>
             </div>
@@ -248,7 +260,7 @@
         
 <section id="aio-01-intro-to-shiny"><p>Content from <a href="01-intro-to-shiny.html">Introduction to Shiny</a></p>
 <hr>
-<p>Last updated on 2024-01-08 |
+<p>Last updated on 2024-01-09 |
         
         <a href="https://github.com/cobalt-casco/r-shiny-geospatial/edit/main/episodes/01-intro-to-shiny.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 35 minutes</p>
@@ -301,9 +313,10 @@ their bare minimum, they allow for some simple selection of subsets of
 data and re-visualizations. At their most complex… well, chekc out some
 of the submissions to the annual <a href="https://posit.co/blog/winners-of-the-3rd-annual-shiny-contest/" class="external-link">R
 Shiny Competition</a>.</p>
-<p><img src="../fig/shiny_in_a_nutshell_attali.png" alt="Shiny in a Nutshell from Dean Attali" class="figure"> In a nutshell, we write
-Shiny apps in R code. Those apps are then hosted on a server that is
-running an instance of a <a href="https://posit.co/products/open-source/shinyserver/" class="external-link">Shiny
+<p><img src="../fig/shiny_in_a_nutshell_attali.png" alt="Shiny in a Nutshell from Dean Attali" class="figure"><em>Shiny in a Nutshell
+from Dean Attali</em></p>
+<p>In a nutshell, we write Shiny apps in R code. Those apps are then
+hosted on a server that is running an instance of a <a href="https://posit.co/products/open-source/shinyserver/" class="external-link">Shiny
 Server</a>. Note, we will use a public Shiny server for this lesson, <a href="https://shinyapps.io/" class="external-link">shinyapps.io</a>. A user goes to the URL of
 a shiny site. The server processes the R code and delivers a user
 interface.</p>
@@ -466,6 +479,313 @@ the app in your window</p>
 by either hitting Ctrl-C in the console, or, clicking the Stop button in
 RStudio.</p>
 <figure><img src="../fig/shiny-stopapp.png" alt="" class="figure mx-auto d-block"><figcaption>stop a shiny app in Rstudio</figcaption></figure><div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul>
+<li>Create a file called <code>app.R</code> to make a shiny app.</li>
+<li>Make sure this file starts with the four key parts of a Shiny app
+<ul>
+<li>The preamble.<br>
+</li>
+<li>The creation of a UI.<br>
+</li>
+<li>The creation of a server function with <code>input</code> and
+<code>output</code> as arguments.<br>
+</li>
+<li>A call to run <code>shinyApp()</code> at the end.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- 
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use. 
+ -->
+</section></section><section id="aio-02-shiny-ui"><p>Content from <a href="02-shiny-ui.html">The Basics of a User Interface</a></p>
+<hr>
+<p>Last updated on 2024-01-09 |
+        
+        <a href="https://github.com/cobalt-casco/r-shiny-geospatial/edit/main/episodes/02-shiny-ui.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 35 minutes</p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How do we build a User Interface?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li><p>Learn how to add elements to a UI.</p></li>
+<li><p>Discover the different layouts and lewks you can create with
+Shiny.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>How do we make things show up in our user interface? The R Shiny
+ecosystem provides a dynamic <a href="https://shiny.posit.co/r/articles/build/layout-guide/" class="external-link">layout
+ecosystem</a> about which <a href="https://mastering-shiny.org/action-layout.html" class="external-link">much has been
+written</a>. It’s also constantly being updated and extended by other
+packages. Here we will begin to add code to our blank app to begin to
+build something useful to explore data regarding seagrass beds in Casco
+Bay.</p>
+<section id="adding-text-to-the-ui"><h2 class="section-heading">Adding Text to the UI<a class="anchor" aria-label="anchor" href="#adding-text-to-the-ui"></a>
+</h2>
+<hr class="half-width">
+<p>Starting with our blank app, what happens if we add a little text to
+the <code>fluidPage()</code></p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># 1. Preamble</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">shiny</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 2. Define a User Interface</span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
+<span>  <span class="st">"An app about seagrass."</span>,</span>
+<span>  <span class="st">"Different Years"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 3. define a server</span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># 4. Call shinyApp() to run your app</span></span>
+<span><span class="fu">shinyApp</span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code></pre>
+</div>
+<figure><img src="../shiny_figs/first_text.jpeg" alt="" class="figure mx-auto d-block"><figcaption>first text app</figcaption></figure><p>FYI, from this point forward, we will just show the parts of the app
+we are working on, rather than the whole thing.</p>
+<p>So, the above is nice. But, 1) It’s just small text and 2) the
+webpage didn’t have a title. How can we make it look better?</p>
+<p>First, note that</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">fluidPage</span><span class="op">(</span></span>
+<span>  <span class="st">"An app about seagrass."</span>,</span>
+<span>  <span class="st">"Different Years"</span></span>
+<span><span class="op">)</span></span></code></pre>
+</div>
+<!--html_preserve-->
+<div class="container-fluid">
+<p>An app about seagrass. Different Years</p>
+</div>
+<!--/html_preserve-->
+<p>outputs HTML code again. Within <code>fluidPage()</code> we can
+either add HTML code directly with the <code>HTML()</code> function. Or,
+if you don’t know/want to learn HTML, Shiny comes with a number of
+functions that will generate valid HTML code. You can look these up with
+<code>?tags</code> or with <code>names(tags)</code>. Note, the later
+will show even more possible functions, but for many of them, you have
+to use <code>tags$*()</code>.</p>
+<p>For example:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">fluidPage</span><span class="op">(</span></span>
+<span>  <span class="fu">h1</span><span class="op">(</span><span class="st">"An app about seagrass."</span><span class="op">)</span>,</span>
+<span>  <span class="fu">br</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  <span class="fu">h3</span><span class="op">(</span><span class="st">"Different Years"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre>
+</div>
+<!--html_preserve-->
+<div class="container-fluid">
+<h1>
+An app about seagrass.
+</h1>
+<br><h3>
+Different Years
+</h3>
+</div>
+<!--/html_preserve-->
+<p>Generates one big header, a line break, and a smaller header. Let’s
+add this to our UI and see what it looks like.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
+<span>  <span class="fu">h1</span><span class="op">(</span><span class="st">"An app about seagrass"</span><span class="op">)</span>,</span>
+<span>  <span class="fu">br</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  <span class="fu">h3</span><span class="op">(</span><span class="st">"Over time"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre>
+</div>
+<p><img src="../shiny_figs/html_text.jpeg" alt="show html out" class="figure"> If we
+want our app to have a title, we can give it one as well.</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
+<span>  title <span class="op">=</span> <span class="st">"Seagrass in Casco App"</span>,</span>
+<span>  <span class="fu">h1</span><span class="op">(</span><span class="st">"An app about seagrass"</span><span class="op">)</span>,</span>
+<span>  <span class="fu">br</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  <span class="fu">h3</span><span class="op">(</span><span class="st">"Over time"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre>
+</div>
+<p>Note how every piece is separated by a comma.</p>
+<div class="Challenge">
+<p>Explore <code>names(tags)</code> and use different functions to
+create a small website you like. You can look at <code>?tags</code> to
+get information about some of them, or just play with
+<code>tags$*()</code> to format things in different ways. If a tag can
+take other arguments, you can supply them as arguments to the function.
+If you have no idea what any of this might mean, check out <a href="https://www.w3schools.com/tags/" class="external-link">this html reference</a>.</p>
+<div class="Solution">
+<p>For example</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
+<span>  title <span class="op">=</span> <span class="st">"Seagrass in Casco App"</span>,</span>
+<span>  <span class="va">tags</span><span class="op">$</span><span class="fu">strong</span><span class="op">(</span><span class="st">"I am strong"</span><span class="op">)</span>,</span>
+<span>  <span class="fu">br</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  <span class="va">tags</span><span class="op">$</span><span class="fu">blockquote</span><span class="op">(</span><span class="st">"Here I quoteth from the finest."</span><span class="op">)</span>,</span>
+<span>  <span class="fu">br</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  <span class="fu">a</span><span class="op">(</span><span class="st">"Maine Historical Eeelgrass Viewer"</span>, href <span class="op">=</span> <span class="st">"https://maine.maps.arcgis.com/apps/MapSeries/index.html?appid=ac2f7b3d29b34268a230a060d6b78b25"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre>
+</div>
+</div>
+</div>
+</section><section id="adding-a-theme"><h2 class="section-heading">Adding a Theme<a class="anchor" aria-label="anchor" href="#adding-a-theme"></a>
+</h2>
+<hr class="half-width">
+<p>To see the different pieces of the layout as we move forward, we’re
+also going to add a theme. A theme isn’t necessary, but can often make
+things shine. The <code>bslib</code> package proves a dynamic tool to
+make themes. However, to do so quickly, we recomment <a href="https://rstudio.github.io/shinythemes/" class="external-link">shinythemes</a>. Let’s add
+the <code>sandstone</code> theme.</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">library</span><span class="op">(</span><span class="va">shinythemes</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
+<span>  title <span class="op">=</span> <span class="st">"Seagrass in Casco App"</span>,</span>
+<span>  theme <span class="op">=</span> <span class="fu">shinytheme</span><span class="op">(</span><span class="st">"sandstone"</span><span class="op">)</span>,</span>
+<span>  </span>
+<span>  <span class="fu">h1</span><span class="op">(</span><span class="st">"An app about seagrass"</span><span class="op">)</span>,</span>
+<span>  <span class="fu">br</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  <span class="fu">h3</span><span class="op">(</span><span class="st">"Over time"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre>
+</div>
+<p>We don’t see it making a huge difference yet, but notice how the font
+changes. Themes are another great example of an item that one can find
+many resouces on, but it’s a rabbit hole you can become lost inside
+of.</p>
+</section><section id="adding-layouts-to-the-ui"><h2 class="section-heading">Adding Layouts to the UI<a class="anchor" aria-label="anchor" href="#adding-layouts-to-the-ui"></a>
+</h2>
+<hr class="half-width">
+<p>Rather than hand-coding all of the HTML in a page, Shiny provides a
+number of functions that will create dynamic interfaces and blocks of
+HTML code for you. Check out <a href="https://shiny.posit.co/r/articles/build/layout-guide/" class="external-link">Posit’s
+guide to layouts</a> for a fairly comprehensive guide or <a href="https://mastering-shiny.org/action-layout.html" class="external-link">this chapter from
+Mastering Shiny</a>. For our purposes, we will use the classic sidebar
+layout. Let’s start by taking our raw text and making a title panel.</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
+<span>  title <span class="op">=</span> <span class="st">"Seagrass in Casco App"</span>,</span>
+<span>  theme <span class="op">=</span> <span class="fu">shinytheme</span><span class="op">(</span><span class="st">"sandstone"</span><span class="op">)</span>,</span>
+<span>  </span>
+<span> <span class="fu">titlePanel</span><span class="op">(</span><span class="st">"Seagrass in Casco Bay over time"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre>
+</div>
+<p>To that, we will use a classic <code>sidebarLayout()</code>. Within a
+<code>sidebarLayout()</code> we also need to add a
+<code>sidebarPanel()</code> and <code>mainPanel</code>, as otherwise the
+layout would just be a blank box.</p>
+<p><img src="../fig/sidebar.png" alt="Sidebar Layout from Mastering Shiny" class="figure"><em>The nesting of a
+sidebar layout from [Mastering Shiny](<a href="https://mastering-shiny.org/action-layout.html" class="external-link uri">https://mastering-shiny.org/action-layout.html</a></em></p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
+<span>  title <span class="op">=</span> <span class="st">"Seagrass in Casco App"</span>,</span>
+<span>  theme <span class="op">=</span> <span class="fu">shinytheme</span><span class="op">(</span><span class="st">"sandstone"</span><span class="op">)</span>,</span>
+<span>  </span>
+<span> <span class="fu">titlePanel</span><span class="op">(</span><span class="st">"Seagrass in Casco Bay over time"</span><span class="op">)</span>,</span>
+<span> </span>
+<span> <span class="fu">sidebarLayout</span><span class="op">(</span></span>
+<span>   <span class="fu">sidebarPanel</span><span class="op">(</span><span class="st">"This is the sidebar"</span><span class="op">)</span>,</span>
+<span>   <span class="fu">mainPanel</span><span class="op">(</span><span class="st">"This is the main panel"</span><span class="op">)</span></span>
+<span> <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre>
+</div>
+<figure><img src="../shiny_figs/sidebar_layout.jpeg" alt="" class="figure mx-auto d-block"><figcaption>sidebar layout run</figcaption></figure><div class="Challenge">
+<p>You might have noticed that there is an inherent column/row layout
+here. Fluid pages are structured using fluid rows and columns nested
+within fluid rows. There are 12 units of width across a fluid row. Using
+<code>fluidRow()</code> and <code>column()</code> make a UI with 3 rows,
+3 columns in row 1, 2 in row 2, and 1 in row 3. All dividing the row
+equally. Put text into them to see the results.</p>
+<p>Note, you might have to stretch your viewing window to see it.</p>
+<p><img src="../fig/multirow.png" alt="multirow form mastering shiny" class="figure"><em>A multirow layout from <a href="https://mastering-shiny.org/action-layout.html#multi-row" class="external-link">Mastering
+Shiny</a></em></p>
+<div class="Solution">
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
+<span>  <span class="fu">fluidRow</span><span class="op">(</span></span>
+<span>    <span class="fu">column</span><span class="op">(</span><span class="fl">4</span>, </span>
+<span>      <span class="st">"1,1"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu">column</span><span class="op">(</span><span class="fl">4</span>, </span>
+<span>      <span class="st">"1,2"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu">column</span><span class="op">(</span><span class="fl">4</span>, </span>
+<span>      <span class="st">"1,3"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  <span class="fu">fluidRow</span><span class="op">(</span></span>
+<span>    <span class="fu">column</span><span class="op">(</span><span class="fl">6</span>, </span>
+<span>     <span class="st">"2,1"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu">column</span><span class="op">(</span><span class="fl">6</span>, </span>
+<span>      <span class="st">"2,2"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  <span class="fu">fluidRow</span><span class="op">(</span></span>
+<span>    <span class="fu">column</span><span class="op">(</span><span class="fl">12</span>, </span>
+<span>      <span class="st">"3,1"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre>
+</div>
+</div>
+</div>
+<div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
