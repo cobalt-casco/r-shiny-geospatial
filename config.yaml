@@ -64,6 +64,7 @@ episodes:
 - 03-input-output.Rmd
 - 04-reactives.Rmd
 - 05-publishing-shiny-app.Rmd
+- 06-translating-shiny.Rmd
 
 # Information for Learners
 learners:
