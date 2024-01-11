@@ -8,6 +8,7 @@ exercises: 15
 source("setup.R")
 library(webshot2)
 
+a <- installed.packages()
 if(!("shi18ny" %in% a[,1] )){
   remotes::install_github("datasketch/shi18ny",
                         ref = "59df31affe0f7da998e10adeda3316f9363305c7")
