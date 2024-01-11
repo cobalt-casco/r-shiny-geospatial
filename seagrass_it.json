@@ -1,0 +1,12 @@
+{
+  "languages": ["en", "it"],
+  "translation": [
+    {
+      "en": "Hello Shiny!",
+      "it": "Ciao Shiny!"},
+    {
+      "en": "Tell me about seagrass!",
+      "it": "Parlami delle erba marina!"
+    }
+  ]
+}
