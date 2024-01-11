@@ -7,6 +7,13 @@ exercises: 15
 ```{r setup, echo=FALSE}
 source("setup.R")
 library(webshot2)
+
+if(!("shi18ny" %in% a[,1] )){
+  remotes::install_github("datasketch/shi18ny",
+                        ref = "59df31affe0f7da998e10adeda3316f9363305c7")
+}
+
+
 knitr::opts_chunk$set(fig.height = 6, 
                       warning = FALSE, 
                       message = FALSE)
