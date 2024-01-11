@@ -776,6 +776,20 @@
       ],
       "Hash": "5e3c5dc0b071b21fa128676560dbe94d"
     },
+    "remotes": {
+      "Package": "remotes",
+      "Version": "2.4.2.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "methods",
+        "stats",
+        "tools",
+        "utils"
+      ],
+      "Hash": "63d15047eb239f95160112bcadc4fcb9"
+    },
     "rlang": {
       "Package": "rlang",
       "Version": "1.1.2",
@@ -810,6 +824,13 @@
         "yaml"
       ],
       "Hash": "d65e35823c817f09f4de424fcdfa812a"
+    },
+    "rstudioapi": {
+      "Package": "rstudioapi",
+      "Version": "0.15.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "5564500e25cffad9e22244ced1379887"
     },
     "s2": {
       "Package": "s2",
@@ -933,6 +954,25 @@
         "xtable"
       ],
       "Hash": "3a1f41807d648a908e3c7f0334bf85e6"
+    },
+    "shiny.i18n": {
+      "Package": "shiny.i18n",
+      "Version": "0.3.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "R6",
+        "glue",
+        "jsonlite",
+        "methods",
+        "rstudioapi",
+        "shiny",
+        "stringr",
+        "utils",
+        "yaml"
+      ],
+      "Hash": "fb1b47e69750065a4f3c8c4ef24e4891"
     },
     "shinyjs": {
       "Package": "shinyjs",
