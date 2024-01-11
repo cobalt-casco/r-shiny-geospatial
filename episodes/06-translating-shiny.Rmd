@@ -8,11 +8,11 @@ exercises: 15
 source("setup.R")
 library(webshot2)
 
-a <- installed.packages()
-if(!("shi18ny" %in% a[,1] )){
-  remotes::install_github("datasketch/shi18ny",
-                        ref = "59df31affe0f7da998e10adeda3316f9363305c7")
-}
+# a <- installed.packages()
+# if(!("shi18ny" %in% a[,1] )){
+#   remotes::install_github("datasketch/shi18ny",
+#                         ref = "59df31affe0f7da998e10adeda3316f9363305c7")
+# }
 
 
 knitr::opts_chunk$set(fig.height = 6, 
@@ -47,7 +47,7 @@ your UI can be help broaden your audience. Here we will explore two translation
 packages for Shiny. We will start with a simple app which we can put in a file
 `app-translate.R`.
 
-```{r}
+```
 library(shiny)
 library(shi18ny)
   
@@ -74,7 +74,7 @@ loads a lot of HTML code that will be needed to do the translations. The second
 is a new input, `langSelectorInput()`. We will use the `position = "Fixed"` 
 argument in order to have it not move around as we scroll the page.
 
-```{r}
+```
 ui <- fluidPage(
   
   #language selector
@@ -118,7 +118,7 @@ update across the entire page. Including the UI. So, we need to run
 `uiLangUpdate()` with arguments to the classes the library makes available and
 a call to the module itself.
 
-```{r lang-server}
+```
 server <- function(input, output) {
     # the language list
     i18n <- list(
@@ -136,13 +136,13 @@ server <- function(input, output) {
 ```
 
 ```{r eval = TRUE, results = "hide", echo = FALSE}
-trans_shiny <- shinyApp(ui, server)
-
-appshot(trans_shiny, "shiny_figs/tans_shiny.jpeg",
-        vwidth = 800, vheight = 600)
+# trans_shiny <- shinyApp(ui, server)
+# 
+# appshot(trans_shiny, "shiny_figs/tans_shiny.jpeg",
+#         vwidth = 800, vheight = 600)
+#![an app with translation](shiny_figs/tans_shiny.jpeg)
 ```
 
-![an app with translation](shiny_figs/tans_shiny.jpeg)
 
 Now, changing the language selector didn't actually change any of the words. 
 This is because Shiny needs to know WHICH words should be translated. For this, 
@@ -151,7 +151,7 @@ strings and, as long as each have a match in the translation table, it will
 translate them as needed.
 
 
-```{r}
+```
 ui <- fluidPage(
   
   #language selector
@@ -176,7 +176,7 @@ parsing of language with the `i_()` function.
 So, we can change our UI to
 
 
-```{r}
+```
 ui <- fluidPage(
   
   #language selector
@@ -191,7 +191,7 @@ ui <- fluidPage(
 ```
 
 And our server to
-```{r}
+```
 server <- function(input, output) {
     # the language list
     i18n <- list(
