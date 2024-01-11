@@ -18,12 +18,12 @@
   <div class="container-fluid top-nav-container">
     <div class="col-md-6">
       <div class="large-logo">
-        <img alt="Carpentries Incubator" src="assets/images/incubator-logo.svg"><abbr class="badge badge-light" title="This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback." style="background-color: #FFC700; border-radius: 5px">
-          <a href="https://cdh.carpentries.org/the-lesson-life-cycle.html#field-testing-alpha-stage" class="external-link alert-link" style="color: #383838">
-            <i aria-hidden="true" class="icon" data-feather="alert-triangle" style="border-radius: 5px"></i>
-            Alpha
+        <img alt="Carpentries Incubator" src="assets/images/incubator-logo.svg"><abbr class="badge badge-light" title="This lesson is in the beta phase, which means that it is ready for teaching by instructors outside of the original author team." style="background-color: #001483; border-radius: 5px">
+          <a href="https://cdh.carpentries.org/the-lesson-life-cycle.html#polishing-beta-stage" class="external-link alert-link" style="color: #FFF7F1">
+            <i aria-hidden="true" class="icon" data-feather="alert-circle" style="border-radius: 5px"></i>
+            Beta
           </a>
-          <span class="visually-hidden">This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback.</span>
+          <span class="visually-hidden">This lesson is in the beta phase, which means that it is ready for teaching by instructors outside of the original author team.</span>
         </abbr>
         
       </div>
@@ -193,6 +193,15 @@
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush7">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading7">
+        <a href="06-translating-shiny.html">6. Translating a Shiny App</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
                 </div>
               </div>
             </div>
@@ -244,8 +253,55 @@
       <hr></nav><main id="main-content" class="main-content"><h1 class="schedule-heading">Summary and Setup</h1>
       
 
+<p><strong>Lesson Author:</strong> Jarrett Byrnes</p>
 <p>This is a new lesson built with <a href="https://carpentries.github.io/sandpaper-docs" class="external-link">The Carpentries
-Workbench</a>.</p>
+Workbench</a>. It is designed to teach the basics of how to build an <a href="https://shiny.posit.co/" class="external-link">R Shiny</a> app. Much of the material
+these lessons draw on come from Dean Attali’s wonderful tutorials (<a href="https://docs.google.com/presentation/d/1dXhqqsD7dPOOdcC5Y7RW--dEU7UfU52qlb0YD3kKeLw/" class="external-link">see
+here for slides</a> or <a href="https://deanattali.com/blog/building-shiny-apps-tutorial/" class="external-link">see
+here for a walkthrough</a>) as well as the excellent <a href="https://mastering-shiny.org/" class="external-link">Mastering Shiny</a> book by Hadley
+Wickham.</p>
+<div id="prerequisites" class="callout prereq">
+<div class="callout-square">
+<i class="callout-icon" data-feather="check"></i>
+</div>
+<div id="prerequisites" class="callout-inner">
+<h3 class="callout-title">Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a>
+</h3>
+<div class="callout-content">
+<p>Data Carpentry’s teaching is hands-on, so participants are encouraged
+to use their own computers to ensure the proper setup of tools for an
+efficient workflow. To most effectively use these materials, please make
+sure to download the data and install everything before working through
+this lesson.</p>
+<div class="section level3">
+<h3 id="r-skill-level">R Skill Level<a class="anchor" aria-label="anchor" href="#r-skill-level"></a></h3>
+<p>This lesson assumes you have some knowledge of <code>R</code>. If
+you’ve never used <code>R</code> before, or need a refresher, start with
+our <a href="https://cobalt-casco.github.io/r-intro-geospatial/" class="external-link">Introduction
+to R for Geospatial Data</a> lesson.</p>
+</div>
+<div class="section level3">
+<h3 id="geospatial-skill-level">Geospatial Skill Level<a class="anchor" aria-label="anchor" href="#geospatial-skill-level"></a></h3>
+<p>This lesson assumes you have some knowledge of geospatial data types
+and common file formats. If you have never worked with geospatial data
+before, or need a refresher, start with our <a href="https://cobalt-casco.github.io/organization-geospatial/" class="external-link">Introduction
+to Geospatial Concepts</a> lesson.</p>
+</div>
+<div class="section level3">
+<h3 id="install-software-and-download-data">Install Software and Download Data<a class="anchor" aria-label="anchor" href="#install-software-and-download-data"></a></h3>
+<p>For installation instructions and to download the data used in this
+lesson, see the <a href="https://cobalt-casco.github.io/geospatial-workshop/#setup" class="external-link">Geospatial
+Workshop Overview</a>.</p>
+</div>
+<div class="section level3">
+<h3 id="setup-rstudio-project">Setup RStudio Project<a class="anchor" aria-label="anchor" href="#setup-rstudio-project"></a></h3>
+<p>Make sure you have set up a RStudio project for this lesson, as
+described in the <a href="https://cobalt-casco.github.io/geospatial-workshop/#setup" class="external-link">setup
+instructions</a> and that your working directory is correctly set.</p>
+</div>
+</div>
+</div>
+</div>
 <!-- 
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
@@ -312,8 +368,8 @@ any links that you are not going to use.
   "url": "https://cobalt-casco.github.io/r-shiny-geospatial/index.html",
   "identifier": "https://cobalt-casco.github.io/r-shiny-geospatial/index.html",
   "dateCreated": "2024-01-07",
-  "dateModified": "2024-01-09",
-  "datePublished": "2024-01-09"
+  "dateModified": "2024-01-11",
+  "datePublished": "2024-01-11"
 }
 
   </script><script>
