@@ -198,11 +198,11 @@ server <- function(input, output) {
 }
 
 leaf_shiny <- shinyApp(ui, server)
-appshot(leaf_shiny, "shiny_figs/leaf_shiny.jpeg",
+appshot(leaf_shiny, "fig/shiny_figs/leaf_shiny.jpeg",
         vwidth= 800, vheight = 600, delay=5)
 ```
 
-![Shiny app with leaflet map](shiny_figs/leaf_shiny.jpeg)
+![Shiny app with leaflet map](fig/shiny_figs/leaf_shiny.jpeg)
 
 ## Making a Reactive Leaflet Map
 

@@ -215,7 +215,7 @@ ui <- fluidPage(
 
 select_shiny <- shinyApp(ui = ui, server = server)
 
-appshot(select_shiny, "shiny_figs/select_shiny.jpeg",
+appshot(select_shiny, "fig/shiny_figs/select_shiny.jpeg",
         vwidth = 800,
         vheight = 600)
 ```
@@ -273,7 +273,7 @@ ui <- fluidPage(
 
 select_shiny_check <- shinyApp(ui = ui, server = server)
 
-appshot(select_shiny_check, "shiny_figs/select_shiny_check.jpeg",
+appshot(select_shiny_check, "fig/shiny_figs/select_shiny_check.jpeg",
         vwidth = 800,
         vheight = 600)
 ```
@@ -537,7 +537,7 @@ server <- function(input, output) {
 
 io_app <- shinyApp(ui = ui, server = server)
 
-appshot(io_app, "shiny_figs/io_app.jpeg",
+appshot(io_app, "fig/shiny_figs/io_app.jpeg",
         vwidth = 800,
         vheight = 800,
         delay = 10,
@@ -551,7 +551,7 @@ You can use `%in%` instead and get the same effect.
 
 ::::::::::::::::::::::::::::::::::
 
-![the app so far](shiny_figs/io_app.jpeg)
+![the app so far](fig/shiny_figs/io_app.jpeg)
 
 ::::::::::::::::::::::::::::::::::::: discussion
 
