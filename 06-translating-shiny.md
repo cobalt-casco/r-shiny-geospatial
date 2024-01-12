@@ -252,20 +252,8 @@ library(shiny.i18n)
 
 # Initialize the translator
 trans_lang <- Translator$new(translation_json_path = "seagrass_it.json")
-```
 
-```{.error}
-Error: lexical error: invalid char in json text.
-                                       seagrass_it.json
-                     (right here) ------^
-```
-
-```r
 trans_lang$set_translation_language("en")
-```
-
-```{.error}
-Error in eval(expr, envir, enclos): object 'trans_lang' not found
 ```
 
 Now that we have a translator setup in our preamble, `trans_lan`, we can use it
@@ -298,10 +286,6 @@ ui <- fluidPage(
 )
 ```
 
-```{.error}
-Error in eval(expr, envir, enclos): object 'trans_lang' not found
-```
-
 So, how do we make languages change? This is another case where we need to use
 `observeEvent()` to observe a change in a reactive and trigger a shange across
 the app. The function to change languages is `update_lang()` which takes the
@@ -321,13 +305,6 @@ Putting these pieces together, we now have an app that can run and switch
 languages for large phrases.
 
 
-```{.error}
-Error in eval(expr, envir, enclos): object 'ui' not found
-```
-
-```{.error}
-Error in eval(expr, envir, enclos): object 'i18n_app' not found
-```
 
 ![our app with a translation selector](shiny_figs/i18n_app.jpeg)
 
