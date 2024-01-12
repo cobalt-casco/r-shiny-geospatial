@@ -321,7 +321,7 @@ need to return something for the `NULL` case.
     one_row <- seagrass_casco |> filter(bed_id == input$map_shape_click)
     
     paste("This bed is", one_row$hectares, "hectares")
-  })
+  })  
 ```
 
 ## Selecting With Your Map in Leaflet
