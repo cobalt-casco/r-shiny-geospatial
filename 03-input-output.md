@@ -5,6 +5,17 @@ exercises: 35
 ---
 
 
+```{.error}
+Error: package or namespace load failed for 'units' in dyn.load(file, DLLpath = DLLpath, ...):
+ unable to load shared object '/home/runner/.local/share/renv/cache/v5/R-4.3/x86_64-pc-linux-gnu/units/0.8-5/119d19da480e873f72241ff6962ffd83/units/libs/units.so':
+  libudunits2.so.0: cannot open shared object file: No such file or directory
+```
+
+```{.error}
+Error: package or namespace load failed for 'sf' in dyn.load(file, DLLpath = DLLpath, ...):
+ unable to load shared object '/home/runner/.local/share/renv/cache/v5/R-4.3/x86_64-pc-linux-gnu/units/0.8-5/119d19da480e873f72241ff6962ffd83/units/libs/units.so':
+  libudunits2.so.0: cannot open shared object file: No such file or directory
+```
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
@@ -741,7 +752,7 @@ Error: package or namespace load failed for 'sf' in dyn.load(file, DLLpath = DLL
 
 ```{.output}
 
-Listening on http://127.0.0.1:7122
+Listening on http://127.0.0.1:5570
 ```
 
 :::::::::::::::::::::::::::::::::: callout
