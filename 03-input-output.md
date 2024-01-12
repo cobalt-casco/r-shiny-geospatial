@@ -741,7 +741,7 @@ Error: package or namespace load failed for 'sf' in dyn.load(file, DLLpath = DLL
 
 ```{.output}
 
-Listening on http://127.0.0.1:5504
+Listening on http://127.0.0.1:7122
 ```
 
 :::::::::::::::::::::::::::::::::: callout
@@ -765,6 +765,17 @@ Can you implement any of that? Or ask the instructors/google for
 potential solutions.
 
 ::::::::::::::::::::::::::::::::::::: 
+
+## Oh No! Something Went Wrong with my Code!
+
+As one last note, if you are running your code and it does not do what
+you think it should do, the easiest way to begin the debugging process
+is to see what objects you are working with in your `render*()` calls.
+To do this, we can liberally sprinkle `print()` statements in those calls.
+This will not return text to the app, but rather will print to the console.
+So, if we put `print(input$year)` in one of our render calls, whenever we
+changed the year, it would print to the console. Later, when we upload our
+app, we will see that it will print to the logfile for each run of the app.
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 

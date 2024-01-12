@@ -1,0 +1,92 @@
+#------------------------------------------------------------
+# Values for this lesson.
+#------------------------------------------------------------
+
+# Which carpentry is this (swc, dc, lc, or cp)?
+# swc: Software Carpentry
+# dc: Data Carpentry
+# lc: Library Carpentry
+# cp: Carpentries (to use for instructor training for instance)
+# incubator: The Carpentries Incubator
+carpentry: 'incubator'
+
+# Overall title for pages.
+title: 'Shiny Webapps with R for Geospatial Exploration' # FIXME
+
+# Date the lesson was created (YYYY-MM-DD, this is empty by default)
+created: 2024-01-07 # FIXME
+
+# Comma-separated list of keywords for the lesson
+keywords: 'software, data, lesson, R, shiny, geospatial' # FIXME
+
+# Life cycle stage of the lesson
+# possible values: pre-alpha, alpha, beta, stable
+life_cycle: 'beta' # FIXME
+
+# License of the lesson
+license: 'CC-BY 4.0'
+
+# Link to the source repository for this lesson
+source: 'https://github.com/cobalt-casco/r-shiny-geospatial' # FIXME
+
+# Default branch of your lesson
+branch: 'main'
+
+# Who to contact if there are any issues
+contact: 'jarrett.byrnes@umb.edu' # FIXME
+
+# Navigation ------------------------------------------------
+#
+# Use the following menu items to specify the order of
+# individual pages in each dropdown section. Leave blank to
+# include all pages in the folder.
+#
+# Example -------------
+#
+# episodes:
+# - introduction.md
+# - first-steps.md
+#
+# learners:
+# - setup.md
+#
+# instructors:
+# - instructor-notes.md
+#
+# profiles:
+# - one-learner.md
+# - another-learner.md
+
+# Order of episodes in your lesson
+episodes:
+- 01-intro-to-shiny.Rmd
+- 02-shiny-ui.Rmd
+- 03-input-output.Rmd
+- 04-reactives.Rmd
+- 05-publishing-shiny-app.Rmd
+- 06-translating-shiny.Rmd
+- 07-spatial-input-selection.Rmd
+
+# Information for Learners
+learners:
+
+# Information for Instructors
+instructors:
+
+# Learner Profiles
+profiles:
+
+# Customisation ---------------------------------------------
+#
+# This space below is where custom yaml items (e.g. pinning
+# sandpaper and varnish versions) should live
+
+
+# Customisation ---------------------------------------------
+#
+# This space below is where custom yaml items (e.g. pinning
+# sandpaper and varnish versions) should live
+
+
+url: 'https://cobalt-casco.github.io/r-shiny-geospatial/'
+
