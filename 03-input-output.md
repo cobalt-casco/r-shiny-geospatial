@@ -752,7 +752,7 @@ Error: package or namespace load failed for 'sf' in dyn.load(file, DLLpath = DLL
 
 ```{.output}
 
-Listening on http://127.0.0.1:6370
+Listening on http://127.0.0.1:5208
 ```
 
 :::::::::::::::::::::::::::::::::: callout
@@ -762,7 +762,7 @@ You can use `%in%` instead and get the same effect.
 
 ::::::::::::::::::::::::::::::::::
 
-![the app so far](shiny_figs/io_app.jpeg)
+![the app so far](fig/shiny_figs/io_app.jpeg)
 
 ::::::::::::::::::::::::::::::::::::: discussion
 

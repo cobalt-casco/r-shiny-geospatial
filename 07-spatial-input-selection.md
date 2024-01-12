@@ -128,7 +128,7 @@ server <- function(input, output) {
 
 
 
-![Shiny app with leaflet map](shiny_figs/leaf_shiny.jpeg)
+![Shiny app with leaflet map](fig/shiny_figs/leaf_shiny.jpeg)
 
 ## Making a Reactive Leaflet Map
 
