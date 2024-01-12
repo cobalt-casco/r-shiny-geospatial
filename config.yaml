@@ -65,6 +65,7 @@ episodes:
 - 04-reactives.Rmd
 - 05-publishing-shiny-app.Rmd
 - 06-translating-shiny.Rmd
+- 07-spatial-input-selection.Rmd
 
 # Information for Learners
 learners:
