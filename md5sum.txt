@@ -4,6 +4,7 @@
 "config.yaml" "5a602ae110f5714bd9f0936e71521615" "site/built/config.yaml" "2024-01-12"
 "index.md" "092c706608e472fdb78e1198470c2287" "site/built/index.md" "2024-01-12"
 "links.md" "8184cf4149eafbf03ce8da8ff0778c14" "site/built/links.md" "2024-01-12"
+"renv.lock" "2eb3e694ca78a59c1e6998354c6c6788" "site/built/renv.lock" "2024-01-12"
 "episodes/01-intro-to-shiny.Rmd" "46bb0309573d60316278116f704bb8b5" "site/built/01-intro-to-shiny.md" "2024-01-12"
 "episodes/02-shiny-ui.Rmd" "7d1c2265c1f3082c5dd16a4a191efc0c" "site/built/02-shiny-ui.md" "2024-01-12"
 "episodes/03-input-output.Rmd" "a1f55a400c73359a237355ba2bd87a75" "site/built/03-input-output.md" "2024-01-12"
