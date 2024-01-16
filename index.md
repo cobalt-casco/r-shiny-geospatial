@@ -43,6 +43,14 @@ For installation instructions and to download the data used in this
 lesson, see the
 [Geospatial Workshop Overview](https://cobalt-casco.github.io/geospatial-workshop/#setup).
 
+
+### Download Data
+
+In the vein of the initial R lessons for this GIS workshop, [setup a new project as we did in lesson 2](https://cobalt-casco.github.io/r-intro-geospatial/02-project-intro.html)
+and create a data folder. For the data, we will use [this unified seagrass data set](https://cobalt-casco.github.io/r-shiny-geospatial/data/joined_seagrass_cover.Rds)
+which brings together multiple years from the [Maine DEP and DMR seagrass surveys](https://www.maine.gov/dmr/science/species-information/eelgrass) that we
+have [joined after cleaning](https://github.com/cobalt-casco/data_processing/blob/main/scripts/join_seagrass.R).
+
 ### Setup RStudio Project
 
 Make sure you have set up a RStudio project for this lesson, as
